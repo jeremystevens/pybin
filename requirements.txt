@@ -3,4 +3,4 @@ flask
 werkzeug
 json
 sqlite3
-
+rstr

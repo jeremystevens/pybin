@@ -74,14 +74,13 @@
 
             <!--Here-->
 
-
-            <form method="POST" action="" name="addpaste" id="addpaste">
+                 <form action="/submit" method="post">
                 <div class="base-block">
                     <div class="title">Add a new paste</div>
                     <div id="container">
                         <div class="form-group">
                             <label for="exampleFormControlTextarea1"></label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="8"></textarea>
+                            <textarea class="form-control" id="paste_text" name="paste_text" rows="8"></textarea>
                         </div>
 
                         <div id="textCopy"/>
@@ -94,7 +93,7 @@
                             <h4>Syntax</h4>
 
                             <p>
-                                <select name="post_syntax" id="select1" class="uniform" data-placement="right"
+                                <select name="paste_syntax" id="select1" class="uniform" data-placement="right"
                                         rel="tooltip" data-original-title="Select your language">
                                     <option value="c" name="c">C</option>
                                     <option value="css" name="css">CSS</option>
@@ -157,7 +156,7 @@
                             <h4>Expiration</h4>
 
                             <p>
-                                <select name="post_exp" class="uniform" data-placement="right" rel="tooltip"
+                                <select name="paste_exp" class="uniform" data-placement="right" rel="tooltip"
                                         data-original-title="Select the life of your paste">
                                     <option value="0">Never</option>
                                     <option value="1">10 Minutes</option>
@@ -173,7 +172,6 @@
                                         data-original-title="Set your paste private or public">
                                     <option value="public">Public</option>
                                     <option value="unlisted">Unlisted</option>
-                                    <input type="hidden" name="posters_name" value="<?=$uname;?>">
                                 </select>
                             </p>
                             <div class="title">Paste Settings</div>
@@ -181,9 +179,9 @@
 
                             <p>
                                 <input data-placement="right" rel="tooltip" data-original-title="Paste Name"
-                                       name="post_title" type="text" value="" class="st-forminput"/><br/>
+                                       name="paste_title" type="text" value="" class="st-forminput"/><br/>
                             </p>
-                            <input name="submit" type="submit" value="Submit" id="submit" class="btn btn-primary"/>
+                             <input type="submit" name="" value="Submit" class="btn btn-primary"/>
                             </p>
                         </div>
                     </div>
