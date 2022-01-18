@@ -4,3 +4,4 @@ werkzeug
 json
 sqlite3
 rstr
+flask_sqlalchemy
