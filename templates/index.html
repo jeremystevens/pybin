@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="en" class="h-100">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.84.0">
+    <title>PyBin</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sticky-footer-navbar/">
+
+
+    <!-- Bootstrap core CSS -->
+    <link href="static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="static/css/style.css" rel="stylesheet">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+
+    </style>
+
+
+    <!-- Custom styles for this template -->
+    <link href="static/css/sticky-footer-navbar.css" rel="stylesheet">
+</head>
+<body class="d-flex flex-column h-100">
+
+<header>
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"><img src="static/img/logo.png" height="35" width="35">&nbsp;
+                &nbsp;PyBin</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+                    aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/">Add Paste</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">View Pastes</a>
+                    </li>
+                </ul>
+                <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<!-- Begin page content -->
+<main class="flex-shrink-0">
+    <div class="container">
+        <div class="span8">
+
+
+            <!--Here-->
+
+                 <form action="/submit" method="post">
+                <div class="base-block">
+                    <div class="title">Add a new paste</div>
+                    <div id="container">
+                        <div class="form-group">
+                            <label for="exampleFormControlTextarea1"></label>
+                            <textarea class="form-control" id="paste_text" name="paste_text" rows="8"></textarea>
+                        </div>
+
+                        <div id="textCopy"/>
+                    </div>
+
+
+                    <div class="row-fluid">
+                        <div class="base-block span6">
+                            <div class="title">Paste Settings</div>
+                            <h4>Syntax</h4>
+
+                            <p>
+                                <select name="paste_syntax" id="select1" class="uniform" data-placement="right"
+                                        rel="tooltip" data-original-title="Select your language">
+                                    <option value="c" name="c">C</option>
+                                    <option value="css" name="css">CSS</option>
+                                    <option value="cpp" name="cpp">C++</option>
+                                    <option value="html4strict" name="html4strict">HTML (4 Strict)</option>
+                                    <option value="java" name="java">Java</option>
+                                    <option value="perl" name="perl">Perl</option>
+                                    <option value="php" name="php">PHP</option>
+                                    <option value="python" name="python">Python</option>
+                                    <option value="ruby" name="ruby">Ruby</option>
+                                    <option value="text" name="text">Plain Text</option>
+                                    <option value="asm" name="asm">ASM (Nasm Syntax)</option>
+                                    <option value="xhtml" name="xhtml">XHTML</option>
+                                    <option value="actionscript" name="actionscript">Actionscript</option>
+                                    <option value="ada" name="ada">ADA</option>
+                                    <option value="apache" name="apache">Apache Log</option>
+                                    <option value="applescript" name="applescript">AppleScript</option>
+                                    <option value="autoit" name="autoit">AutoIT</option>
+                                    <option value="bash" name="bash">Bash</option>
+                                    <option value="bptzbasic" name="bptzbasic">BptzBasic</option>
+                                    <option value="c_mac" name="c_mac">C for Macs</option>
+                                    <option value="csharp" name="csharp">C#</option>
+                                    <option value="ColdFusion" name="ColdFusion">coldfusion</option>
+                                    <option value="delphi" name="delphi">Delphi</option>
+                                    <option value="eiffel" name="eiffel">Eiffel</option>
+                                    <option value="fortran" name="fortran">Fortran</option>
+                                    <option value="freebasic" name="freebasic">FreeBasic</option>
+                                    <option value="gml" name="gml">GML</option>
+                                    <option value="groovy" name="groovy">Groovy</option>
+                                    <option value="inno" name="inno">Inno</option>
+                                    <option value="java5" name="java5">Java 5</option>
+                                    <option value="javascript" name="javascript">Javascript</option>
+                                    <option value="latex" name="latex">LaTeX</option>
+                                    <option value="mirc" name="mirc">mIRC</option>
+                                    <option value="mysql" name="mysql">MySQL</option>
+                                    <option value="nsis" name="nsis">NSIS</option>
+                                    <option value="objc" name="objc">Objective C</option>
+                                    <option value="ocaml" name="ocaml">OCaml</option>
+                                    <option value="oobas" name="oobas">OpenOffice BASIC</option>
+                                    <option value="orcale8" name="orcale8">Orcale 8 SQL</option>
+                                    <option value="pascal" name="pascal">Pascal</option>
+                                    <option value="plsql" name="plsql">PL/SQL</option>
+                                    <option value="qbasic" name="qbasic">Q(uick)BASIC</option>
+                                    <option value="robots" name="robots">robots.txt</option>
+                                    <option value="scheme" name="scheme">Scheme</option>
+                                    <option value="sdlbasic" name="sdlbasic">SDLBasic</option>
+                                    <option value="smalltalk" name="smalltalk">Smalltalk</option>
+                                    <option value="smarty" name="smarty">Smarty</option>
+                                    <option value="sql" name="sql">SQL</option>
+                                    <option value="tcl" name="tcl">TCL</option>
+                                    <option value="vbnet" name="vbnet">VB.NET</option>
+                                    <option value="vb" name="vb">Visual BASIC</option>
+                                    <option value="winbatch" name="winbatch">Winbatch</option>
+                                    <option value="xml" name="xml">XML</option>
+                                    <option value="z80" name="z80">z80 ASM</option>
+                                    <option value="4cs" name="4cs">gadv 4Cs</option>
+
+                                </select>
+                            </p>
+                            <h4>Expiration</h4>
+
+                            <p>
+                                <select name="paste_exp" class="uniform" data-placement="right" rel="tooltip"
+                                        data-original-title="Select the life of your paste">
+                                    <option value="0">Never</option>
+                                    <option value="1">10 Minutes</option>
+                                    <option value="2">1 Hour</option>
+                                    <option value="3">1 Day</option>
+                                    <option value="4">1 Month</option>
+                                </select>
+                            </p>
+                            <h4>Exposure</h4>
+
+                            <p>
+                                <select name="exposure" class="uniform" data-placement="right" rel="tooltip"
+                                        data-original-title="Set your paste private or public">
+                                    <option value="public">Public</option>
+                                    <option value="unlisted">Unlisted</option>
+                                </select>
+                            </p>
+                            <div class="title">Paste Settings</div>
+
+
+                            <p>
+                                <input data-placement="right" rel="tooltip" data-original-title="Paste Name"
+                                       name="paste_title" type="text" value="" class="st-forminput"/><br/>
+                            </p>
+                             <input type="submit" name="" value="Submit" class="btn btn-primary"/>
+                            </p>
+                        </div>
+                    </div>
+                    <!--/span-->
+
+
+            </form>
+        </div>
+
+    </div>
+    </div>
+    <div class="base-block">
+        <div class="title">Recent pastes</div>
+
+        <ul class="nav nav-list">
+
+            <!--Recent Post go here -->
+            <li>
+                <?php include 'include/live.php';?>
+            </li>
+        </ul>
+    </div>
+    <!--/base-block-->
+
+    </div>
+
+</main>
+
+<footer class="footer mt-auto py-3 bg-light">
+    <div class="container">
+        <cetnter>
+            <span class="text-muted"><center>Powered by Python</center></span>
+        </cetnter>
+    </div>
+</footer>
+
+
+<script src="static/js/bootstrap.bundle.min.js"></script>
+
+
+</body>
+</html>

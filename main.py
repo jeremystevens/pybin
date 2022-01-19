@@ -1,0 +1,71 @@
+import datetime
+import json
+import string
+from datetime import datetime
+import jsonify
+from flask import Flask, render_template, request, url_for, redirect, flash, session
+from werkzeug.security import check_password_hash
+from flask_sqlalchemy import SQLAlchemy
+from data.db import get_connection, generate_random_id, utf8len
+
+app = Flask(__name__)
+app.config['SECRET_KEY'] = 'nots0s3cr3t'
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///pybin.db"
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+db = SQLAlchemy(app)
+
+
+# db model
+class Post(db.Model):
+    pid = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    post_id = db.Column(db.String(80), unique=True, nullable=False)
+    post_syntax = db.Column(db.String(80))
+    post_title = db.Column(db.String(200))
+    post_text = db.Column(db.String(8000))
+    expiration = db.Column(db.String(200))
+    exposure = db.Column(db.Integer)
+    post_date = db.Column(db.String(200))
+    post_size = db.Column(db.String(800))
+    post_hits = db.Column(db.String(8000))
+
+
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+
+# add methods to route or it will not work
+@app.route('/submit', methods=['GET', 'POST'])
+def submit_paste():
+    if request.method == 'POST':
+        paste_text = request.form['paste_text']
+        paste_syntax = request.form['paste_syntax']
+        paste_exp = request.form['paste_exp']
+        paste_exposure = request.form['exposure']
+        paste_name = request.form['paste_title']
+        date = datetime.now()
+        # generate random id
+        random_id = generate_random_id(6, 8)
+        # uses utf8lens fn to calculate string size in bytes.
+        size_bt = utf8len(paste_text)
+        hits_count = 0
+        make_post = Post(post_id=random_id, post_syntax=paste_syntax, post_title=paste_name, post_text=paste_text,
+                         expiration=paste_exp, exposure=paste_exposure, post_date=date, post_size=size_bt,
+                         post_hits=hits_count)
+        db.session.add(make_post)
+        db.session.commit()
+        # redirecting to the /view/random_id  (does not work)
+        return redirect(url_for('/view/', random_id=random_id))
+
+
+@app.route('/view/<random_id>')
+def get_post(random_id):
+    post = Post()
+    results = post.query.filter_by(post_id=random_id).first().post_title
+    print(results)
+    # change this to the view post view later.
+    return render_template('index.html')
+
+
+if __name__ == '__main__':
+    app.run(debug=True)
