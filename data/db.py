@@ -22,3 +22,8 @@ def generate_random_id(min_size, max_size):
     numbers = string.digits
     random_string = rstr.rstr(lower_letters + letters + numbers, min_size, max_size)
     return random_string
+
+
+# gets the string size in bytes.
+def utf8len(s):
+    return len(s.encode('utf-8'))

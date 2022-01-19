@@ -1,11 +1,12 @@
+import datetime
 import json
 import string
 from datetime import datetime
-
+import jsonify
 from flask import Flask, render_template, request, url_for, redirect, flash, session
 from werkzeug.security import check_password_hash
 from flask_sqlalchemy import SQLAlchemy
-from data.db import get_connection, generate_random_id
+from data.db import get_connection, generate_random_id, utf8len
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'nots0s3cr3t'
@@ -18,12 +19,12 @@ db = SQLAlchemy(app)
 class Post(db.Model):
     pid = db.Column(db.Integer, autoincrement=True, primary_key=True)
     post_id = db.Column(db.String(80), unique=True, nullable=False)
-    post_syntax = db.Column(db.String(80), nullable=False)
-    post_title = db.Column(db.String(200), nullable=False)
-    post_text = db.Column(db.String(8000), nullable=False)
-    expiration = db.Column(db.String(200), nullable=False)
-    exposure = db.Column(db.Integer, nullable=False)
-    post_date = db.Column(db.String(200), nullable=False)
+    post_syntax = db.Column(db.String(80))
+    post_title = db.Column(db.String(200))
+    post_text = db.Column(db.String(8000))
+    expiration = db.Column(db.String(200))
+    exposure = db.Column(db.Integer)
+    post_date = db.Column(db.String(200))
     post_size = db.Column(db.String(800))
     post_hits = db.Column(db.String(8000))
 
@@ -42,47 +43,27 @@ def submit_paste():
         paste_exp = request.form['paste_exp']
         paste_exposure = request.form['exposure']
         paste_name = request.form['paste_title']
-        print(paste_text)
-        # generate random id 
-        random_id = generate_random_id(6, 8)
-        pid = Post(post_id=random_id)
-        db.session.add(pid)
-        post_syn = Post(post_syntax=paste_syntax)
-        db.session.add(post_syn)
-        post_title = Post(post_title=paste_name)
-        db.session.add(post_title)
-        post_txt = Post(post_text=paste_text)
-        db.session.add(post_txt)
-        expr = Post(expiration=paste_exp)
-        db.session.add(expr)
-        expo = Post(exposure=paste_exposure)
-        db.session.add(expo)
         date = datetime.now()
-        p_date = Post(post_date=date)
-        db.session.add(p_date)
-        # update to get size later
-        size_bt = 0
-        size = Post(post_size=size_bt)
-        db.session.add(size)
-        # set hits to zero
+        # generate random id
+        random_id = generate_random_id(6, 8)
+        # uses utf8lens fn to calculate string size in bytes.
+        size_bt = utf8len(paste_text)
         hits_count = 0
-        p_hits = Post(post_hits=hits_count)
-        db.session.add(p_hits)
+        make_post = Post(post_id=random_id, post_syntax=paste_syntax, post_title=paste_name, post_text=paste_text,
+                         expiration=paste_exp, exposure=paste_exposure, post_date=date, post_size=size_bt,
+                         post_hits=hits_count)
+        db.session.add(make_post)
         db.session.commit()
-        # Redirect after post is complete Needs Work
-        # TODO fix this to redirect to view post page
-        # return render_template("view.html",
-        #       post_id=random_id)
-        return redirect(url_for('/'))
-    else:
-        return redirect(url_for('index'))
+        # redirecting to the /view/random_id  (does not work)
+        return redirect(url_for('/view/', random_id=random_id))
 
 
-@app.route('/view/<post_id>')
-def get_post(post_id):
+@app.route('/view/<random_id>')
+def get_post(random_id):
     post = Post()
-    results = post.query.filter_by(post_id=post_id).first().post_title
+    results = post.query.filter_by(post_id=random_id).first().post_title
     print(results)
+    # change this to the view post view later.
     return render_template('index.html')
 
 
