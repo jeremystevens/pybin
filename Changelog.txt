@@ -8,6 +8,6 @@ Changes: in Dev-0.1 (01/17/22):
  3.  - Created the DB Model for the project and created the DB.
  4. - added function for getting string size in bytes (Post Text)
  5. - created db.py for handling different types of data before its inserted into the DB.
- 5. - Fix inserting into DB issue #1
+ 5. - Fixed inserting into DB issue #1
  6. - Various other small fixes / Removed unused files.
 
