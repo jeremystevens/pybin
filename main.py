@@ -6,7 +6,7 @@ import jsonify
 from flask import Flask, render_template, request, url_for, redirect, flash, session
 from werkzeug.security import check_password_hash
 from flask_sqlalchemy import SQLAlchemy
-from data.db import get_connection, generate_random_id, utf8len
+from data.db import get_connection, generate_random_id, utf8len, exp_datetime
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'nots0s3cr3t'
@@ -41,6 +41,8 @@ def submit_paste():
         paste_text = request.form['paste_text']
         paste_syntax = request.form['paste_syntax']
         paste_exp = request.form['paste_exp']
+        # get a datetime when the post will expire
+        expired_date = exp_datetime(paste_exp)
         paste_exposure = request.form['exposure']
         paste_name = request.form['paste_title']
         date = datetime.now()
@@ -50,12 +52,13 @@ def submit_paste():
         size_bt = utf8len(paste_text)
         hits_count = 0
         make_post = Post(post_id=random_id, post_syntax=paste_syntax, post_title=paste_name, post_text=paste_text,
-                         expiration=paste_exp, exposure=paste_exposure, post_date=date, post_size=size_bt,
+                         expiration=expired_date, exposure=paste_exposure, post_date=date, post_size=size_bt,
                          post_hits=hits_count)
         db.session.add(make_post)
         db.session.commit()
-        # redirecting to the /view/random_id  (does not work)
-        return redirect(url_for('/view/', random_id=random_id))
+        # needs the Function name not the app.route to work.
+        # this fixed issue in #3
+        return redirect(url_for('get_post', random_id=random_id))
 
 
 @app.route('/view/<random_id>')

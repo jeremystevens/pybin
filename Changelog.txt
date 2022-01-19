@@ -1,0 +1,13 @@
+Changes: in Dev-0.2 (01/18/22):
+ 1. - fixed Redirect issue Main:61
+ 2. - added function to find expiration date
+
+Changes: in Dev-0.1 (01/17/22):
+ 1.  - inital HTML index page Design.
+ 2.  - Created main.py with all routes and Project Configuration.
+ 3.  - Created the DB Model for the project and created the DB.
+ 4. - added function for getting string size in bytes (Post Text)
+ 5. - created db.py for handling different types of data before its inserted into the DB.
+ 5. - Fixed inserting into DB issue #1
+ 6. - Various other small fixes / Removed unused files.
+

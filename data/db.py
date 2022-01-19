@@ -2,7 +2,7 @@ import sqlite3
 import os.path
 import rstr
 import string
-
+import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
 
 
@@ -22,6 +22,26 @@ def generate_random_id(min_size, max_size):
     numbers = string.digits
     random_string = rstr.rstr(lower_letters + letters + numbers, min_size, max_size)
     return random_string
+
+
+# function to find the date when post will expire.
+def exp_datetime(post_exp):
+    # 0 = never, 1= 10 min, 2 = 1 hour, 3 = 1 day, 4= 1 month
+    if post_exp == "0":
+        exp_date = 0
+        return exp_date
+    if post_exp == "1":
+        exp_date = datetime.datetime.now() + datetime.timedelta(minutes=10)
+        return exp_date
+    if post_exp == "2":
+        exp_date = datetime.datetime.now() + datetime.timedelta(hours=1)
+        return exp_date
+    if post_exp == "3":
+        exp_date = datetime.datetime.now() + datetime.timedelta(days=1)
+        return exp_date
+    if post_exp == "4":
+        exp_date = datetime.datetime.now() + datetime.timedelta(days=30)
+        return exp_date
 
 
 # gets the string size in bytes.
