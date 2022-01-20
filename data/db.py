@@ -1,3 +1,11 @@
+""" db.py: - some tools to handle data before it is inserted into the DB. """
+
+__author__ = "Jeremy Stevens"
+__license__ = "GPL"
+__version__ = "1.0.0"
+__maintainer__ = "Jeremy Stevens"
+__status__ = "Development"
+
 import sqlite3
 import os.path
 import rstr
