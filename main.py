@@ -83,7 +83,7 @@ def get_post(random_id):
     p_date = datetime.strptime(post_date, '%Y-%m-%d %H:%M:%S.%f').strftime('%m/%d/%Y')
     post_size = post.query.filter_by(post_id=random_id).first().post_size
     post_hits = post.query.filter_by(post_id=random_id).first().post_hits
-    # insert code here to update post hits.
+    # this updates the view count.
     update_hits(random_id)
     post_expire = post.query.filter_by(post_id=random_id).first().expiration
     exp_date = datetime.strptime(post_expire, '%Y-%m-%d %H:%M:%S.%f').strftime('%m/%d/%Y')
