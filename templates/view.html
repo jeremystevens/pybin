@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en" class="h-100">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.84.0">
+    <title>PyBin</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sticky-footer-navbar/">
+
+
+    <!-- Bootstrap core CSS -->
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/css/style.css" rel="stylesheet">
+
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+
+
+    </style>
+
+
+    <!-- Custom styles for this template -->
+    <link href="/static/css/sticky-footer-navbar.css" rel="stylesheet">
+    <!-- Prism -->
+    <link rel="stylesheet" type="text/css" href="/static/css/prism.css">
+    <script src="/static/js/prism.js"></script>
+</head>
+
+<body class="d-flex flex-column h-100">
+
+<header>
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"><img src="/static/img/logo.png" height="35" width="35">&nbsp;
+                &nbsp;PyBin</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+                    aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/">Add Paste</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">View Pastes</a>
+                    </li>
+                </ul>
+                <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<!-- Begin page content -->
+<main class="flex-shrink-0">
+    <div class="container">
+        <div class="span8">
+        </div>
+
+        <!----div class="base-block">
+
+
+
+
+
+
+
+                <--Recent Post go here -->
+
+
+        <!----live post here--->
+
+
+        <!--/base-block-->
+
+
+    </div>
+
+
+    <div class="span8">
+
+        <div class="base-block">
+
+
+            <center>
+                <div class="title">#
+                    {{ post_id }}
+                </div>
+
+                <!---img src="/static/img/Icon.png" height=50 width=50-->
+
+                &nbsp;&nbsp;<img src="/static/img/notepad.png" height=30 width=30>
+
+                <i><h3></h><b>
+                    {{ post_title }}
+                </b></h3></i>
+
+                <!--posted code goes here-->
+                <pre class="line-numbers"> {{ post_text }} <code class="language-{{ post_syntax }}">
+
+                  </code></pre>
+
+                <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                By:
+                anonymous on
+                {{ post_date }} | Syntax: <a href="../archive/{{post_syntax}}">
+                {{ post_syntax }}
+            </a> | Size:
+                {{ post_size }} Bytes |
+
+                Hits:
+                {{ post_hits }} | Expires:
+                {{ post_expire }} | <Br>
+
+                <div id="options" style="position:relative;left:86px;top:21%;width:100%;"><a href="../raw/{{ post_id }}"
+                                                                                             target="popupwindow">Raw
+                    Code</a>&nbsp;
+                    <?=$bitly;?>| <a href="/download/{{ post_id }}" target="popupwindow"> Download </a> &nbsp;| <a
+                            href="../print/{{ post_id }}" target="popupwindow"> Print </a>&nbsp; | &nbsp;<a
+                            href="../report/{{ post_id }}">Report Abuse</a> &nbsp;
+                    <?=$editpaste;?><a href="" onclick="deletepaste(<?=$post_id?>);">
+                        <?=$delpaste;?>
+                    </a>
+                </div>
+                <br>
+                <!---- Removed Social Media Links here ---->
+
+
+                </script>
+
+                <div class="c" style="font-family: monospace;">
+                    </SPAN>
+
+                </div>
+
+            </center>
+        </div>
+
+    </div>
+    <div class="base-block">
+        <div class="title">Recent pastes</div>
+
+        <ul class="nav nav-list">
+
+            <!--Recent Post go here -->
+            <li>
+                <?php include 'include/live.php';?>
+            </li>
+        </ul>
+    </div>
+
+    </div>
+    <!--/base-block-->
+
+    </div>
+
+</main>
+
+<footer class="footer mt-auto py-3 bg-light">
+    <div class="container">
+        <cetnter>
+                <span class="text-muted">
+                    <center>Powered by Python</center>
+                </span>
+        </cetnter>
+    </div>
+</footer>
+
+
+<script src="/static/js/bootstrap.bundle.min.js"></script>
+</center>
+
+</body>
+
+</html>
