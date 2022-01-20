@@ -1,5 +1,3 @@
-# PyBin
-
 ## Quick Guide
 
 1.  **Install packages**
