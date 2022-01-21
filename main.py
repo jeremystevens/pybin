@@ -1,11 +1,4 @@
-""" main.py: the main python file"""
-
-__author__ = "Jeremy Stevens"
-__license__ = "GPL"
-__version__ = "1.0.0"
-__maintainer__ = "Jeremy Stevens"
-__status__ = "Development"
-
+""" main.py: the main python fIle"""
 import datetime
 import json
 import string
@@ -60,6 +53,7 @@ def submit_paste():
         paste_text = request.form['paste_text']
         paste_syntax = request.form['paste_syntax']
         paste_exp = request.form['paste_exp']
+        print(paste_exp)
         # get a datetime when the post will expire
         expired_date = exp_datetime(paste_exp)
         paste_exposure = request.form['exposure']
@@ -94,10 +88,13 @@ def get_post(random_id):
     # this updates the view count.
     update_hits(random_id)
     post_expire = post.query.filter_by(post_id=random_id).first().expiration
-    exp_date = datetime.strptime(post_expire, '%Y-%m-%d %H:%M:%S.%f').strftime('%m/%d/%Y')
+    if post_expire == "0":
+        exp_date = "Never"
+    else:
+        exp_date = datetime.strptime(post_expire, '%Y-%m-%d %H:%M:%S.%f').strftime('%m/%d/%Y')
     post_text = post.query.filter_by(post_id=random_id).first().post_text
     return render_template('view.html', post_id=post_id, post_title=post_title, post_syntax=post_syntax,
-                           post_date=p_date, post_size=post_size, post_hits=post_hits, post_expire=post_expire,
+                           post_date=p_date, post_size=post_size, post_hits=post_hits, post_expire=exp_date,
                            post_text=post_text)
 
 

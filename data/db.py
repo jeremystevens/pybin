@@ -36,7 +36,8 @@ def generate_random_id(min_size, max_size):
 def exp_datetime(post_exp):
     # 0 = never, 1= 10 min, 2 = 1 hour, 3 = 1 day, 4= 1 month
     if post_exp == "0":
-        exp_date = 0
+        # this was changed to fix issue #7 it has to be a date.
+        exp_date = "0";
         return exp_date
     if post_exp == "1":
         exp_date = datetime.datetime.now() + datetime.timedelta(minutes=10)
