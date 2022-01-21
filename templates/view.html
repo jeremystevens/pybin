@@ -32,6 +32,7 @@
         }
 
 
+
     </style>
 
 
@@ -137,8 +138,7 @@
                 <div id="options" style="position:relative;left:86px;top:21%;width:100%;"><a href="../raw/{{ post_id }}"
                                                                                              target="popupwindow">Raw
                     Code</a>&nbsp;
-                    <?=$bitly;?>| <a href="/download/{{ post_id }}" target="popupwindow"> Download </a> &nbsp;| <a
-                            href="../print/{{ post_id }}" target="popupwindow"> Print </a>&nbsp; | &nbsp;<a
+                    <?=$bitly;?>| <a href="/download/{{ post_id }}" target="popupwindow"> Download </a> &nbsp;| &nbsp;<a
                             href="../report/{{ post_id }}">Report Abuse</a> &nbsp;
                     <?=$editpaste;?><a href="" onclick="deletepaste(<?=$post_id?>);">
                         <?=$delpaste;?>
@@ -166,8 +166,9 @@
 
             <!--Recent Post go here -->
             <li>
-                <?php include 'include/live.php';?>
+
             </li>
+            <li>
         </ul>
     </div>
 

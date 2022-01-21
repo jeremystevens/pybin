@@ -1,10 +1,11 @@
 """ main.py: the main python fIle"""
 import datetime
+import os
 import json
 import string
 from datetime import datetime
 import jsonify
-from flask import Flask, render_template, request, url_for, redirect, flash, session
+from flask import Flask, render_template, request, url_for, redirect, flash, session, send_file
 from werkzeug.security import check_password_hash
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.sql.expression import update
@@ -33,7 +34,6 @@ class Post(db.Model):
 
 # update the hit counter
 def update_hits(post_id):
-    post_id
     post = Post()
     post_hits = post.query.filter_by(post_id=post_id).first().post_hits
     post_hits = int(post_hits) + 1
@@ -41,11 +41,13 @@ def update_hits(post_id):
     db.session.commit()
 
 
+# Main index
 @app.route('/')
 def index():
     return render_template('index.html')
 
 
+# Posting Route
 # add methods to route or it will not work
 @app.route('/submit', methods=['GET', 'POST'])
 def submit_paste():
@@ -74,6 +76,28 @@ def submit_paste():
         return redirect(url_for('get_post', random_id=random_id))
 
 
+# View Raw Code Route
+@app.route('/raw/<random_id>')
+def get_raw(random_id):
+    post = Post()
+    post_text = post.query.filter_by(post_id=random_id).first().post_text
+    return render_template('raw.html', post_text=post_text)
+    pass
+
+
+# Download to file Route
+@app.route('/download/<random_id>')
+def download_file(random_id):
+    post = Post()
+    pwd = os.path.dirname(__file__)
+    post_text = post_text = post.query.filter_by(post_id=random_id).first().post_text
+    with open(random_id + '.txt', 'w') as output:
+        output.write(post_text)
+    path = pwd + "/" + random_id + ".txt"
+    return send_file(path, as_attachment=True)
+
+
+# View the post route.
 @app.route('/p/<random_id>')
 def get_post(random_id):
     post = Post()
