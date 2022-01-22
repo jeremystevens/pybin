@@ -1,5 +1,12 @@
 DEVELOPMENT CHANGELOG:
 
+Changes: in Dev-0.4: (01/21/22)
+1. added Route/view for viewing all public visibile post(TODO:need To filter out non-visible post)
+2. added few other minor view fixes in html
+
+Chantges: in Maser: Quick-Fix (01/21/22):
+1. better formatting for raw code
+
 Changes: in Master: (01/20/22):
 1. Added Raw Route / Veiw
 2. Added Download to File Route

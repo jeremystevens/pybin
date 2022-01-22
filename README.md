@@ -1,6 +1,8 @@
 # PyBin
 
 ![screenshot](https://i.postimg.cc/wBP7XX8D/screenshot.png)
+![screenshot](https://i.postimg.cc/BZMRmgry/screenshot2.png)
+
 ## Quick Guide
 
 1.  **Install packages**
