@@ -1,8 +1,4 @@
-DEVELOPMENT CHANGELOG:
 
-Changes: in Dev-0.4: (01/21/22)
-1. added Route/view for viewing all public visible posts (TODO: need To filter out non-visible posts)
-2. added a few other minor view fixes in HTML
 
 Chantges: in Maser: Quick-Fix (01/21/22):
 1. better formatting for raw code
