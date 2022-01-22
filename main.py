@@ -1,15 +1,22 @@
 """ main.py: the main python fIle"""
+
+__author__ = "Jeremy Stevens"
+__license__ = "GPL"
+__version__ = "1.0.0"
+__maintainer__ = "Jeremy Stevens"
+__status__ = "Development"
+
 import datetime
+from datetime import datetime
 import os
 import json
 import string
-from datetime import datetime
-import jsonify
 from flask import Flask, render_template, request, url_for, redirect, flash, session, send_file
 from werkzeug.security import check_password_hash
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.sql.expression import update
 from data.db import get_connection, generate_random_id, utf8len, exp_datetime
+from jinja2 import Environment, PackageLoader, select_autoescape, environment
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'nots0s3cr3t'
@@ -30,6 +37,17 @@ class Post(db.Model):
     post_date = db.Column(db.String(200))
     post_size = db.Column(db.String(800))
     post_hits = db.Column(db.String(8000))
+
+    def __init__(self):
+        self.pid = None
+        self.post_id = None
+        self.post_syntax = None
+        self.post_title = None
+        self.post_text = None
+        self.expiration = None
+        self.exposure = None
+        self.post_date = None
+        self.post_size = None
 
 
 # update the hit counter
@@ -82,7 +100,6 @@ def get_raw(random_id):
     post = Post()
     post_text = post.query.filter_by(post_id=random_id).first().post_text
     return render_template('raw.html', post_text=post_text)
-    pass
 
 
 # Download to file Route
@@ -97,7 +114,13 @@ def download_file(random_id):
     return send_file(path, as_attachment=True)
 
 
-# View the post route.
+@app.route('/view/')
+def view_all():
+    post = Post()
+    return render_template('posts.html', posts=post.query.all(), date=datetime.now())
+
+
+# View post by ID Route
 @app.route('/p/<random_id>')
 def get_post(random_id):
     post = Post()
