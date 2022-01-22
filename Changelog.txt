@@ -1,5 +1,6 @@
+Development Changelog:
 
-Chantges: in Maser: Quick-Fix (01/21/22):
+Changes: in Maser: Quick-Fix (01/21/22):
 1. better formatting for raw code
 2. Changed Table Header Names in posts.html
 3. Added view/route for all public post
