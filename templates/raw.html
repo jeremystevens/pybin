@@ -3,17 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <title></title>
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
     <style>
-        div {
-  word-wrap: break-word;
+        pre, code {
+  font-family: monospace, monospace;
+}
+pre {
+  overflow: auto;
+}
+pre > code {
+  display: block;
+  padding: 1rem;
+  word-wrap: normal;
 }
 
     </style>
 </head>
 <body>
-<div><code>
-    {{ post_text }}
+<pre>
+    <code>
+      <!-- your code here -->
+        {{post_text }}
     </code>
+  </pre>
+
+
+</code>
 </div>
 </body>
 </html>
