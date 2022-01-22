@@ -1,9 +1,4 @@
-DEVELOPMENT CHANGELOG:
 
-Changes: in Dev-0.4: (01/21/22)
-1. added Route/view for viewing all public visibile post(TODO:need To filter out non-visible post)
-2. added few other minor view fixes in html
-3. Changed the titles of the table in post.html
 
 Chantges: in Maser: Quick-Fix (01/21/22):
 1. better formatting for raw code
