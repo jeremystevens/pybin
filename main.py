@@ -11,6 +11,7 @@ from datetime import datetime
 import os
 import json
 import string
+import time
 from flask import Flask, render_template, request, url_for, redirect, flash, session, send_file
 from werkzeug.security import check_password_hash
 from flask_sqlalchemy import SQLAlchemy
@@ -117,6 +118,7 @@ def download_file(random_id):
 @app.route('/view/')
 def view_all():
     post = Post()
+    dates = post.query.with_entities(Post.post_date).all()
     return render_template('posts.html', posts=post.query.all(), date=datetime.now())
 
 
