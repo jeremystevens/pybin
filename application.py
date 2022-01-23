@@ -1,4 +1,4 @@
-""" main.py: the main python fIle"""
+""" application.py: the main python fIle"""
 
 __author__ = "Jeremy Stevens"
 __license__ = "GPL"
