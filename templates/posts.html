@@ -82,25 +82,29 @@
 
             <img src="/static/img/code.png" height="100" width="100">&nbsp;<font size="5">Code Archive</font>
 
-            <div class="c" style="font-family: monospace;">
+            <div class="table-responsive">
                 <Br><Br>
-                <table width="100%" Height="" id="archvie" border="0">
-                    <tr id="archive" bgcolor="">
-                        <td nowrap width="15"><span class="white text_md"><B>ID</B><hr></td>
-                        <td nowrap width="15"><span class="whitetext_md"><B>Title</B><hr></td>
-                        <td nowrap width="15"><span class="whitetext_md"><b>Posted Date</b><Hr></span></td>
-                        <td nowrap width="15"><span class="whitetext_md"><b>Total Views</b><Hr></span></td>
-                        <td nowrap width="15"><span class="whitetext_md"><b>Syntax</b><hr></span></td>
-                    </tr>
-                    {% for post in posts %}
+                <table width="100%" Height="" id="archvie" border="0" class="table table-sm table-dark">
+                    <thead class="thead-light">
                     <tr>
-                        <td><a href="../p/{{ post.post_id }}">{{ post.post_id }}</a><hr></td>
-                        <td>{{ post.post_title }}<hr></td>
-                        <td>{{ date.strftime('%Y-%m-%d') }}<hr></td>
-                        <td>{{ post.post_hits }}<hr></td>
-                        <td>{{ post.post_syntax }}<hr></td>
+                         <th scope="col">ID</th>
+                         <th scope="col">Title</th>
+                        <th scope="col">Posted Date</th>
+                        <th scope="col">Total Views</th>
+                        <th scope="col">Syntax</th>
+                    </tr>
+                    </thead>
+                    {% for post in posts %}
+                     <tbody>
+                    <tr class="table-light">
+                        <th scope="row"><a href="../p/{{ post.post_id }}">{{ post.post_id }}</a></th>
+                         <td>{{ post.post_title }}</td>
+                        <td>{{ date.strftime('%Y-%m-%d') }}</td>
+                        <td>{{ post.post_hits }}</td>
+                        <td>{{ post.post_syntax }}</td>
                         {% endfor %}
                     </tr>
+                     </tbody>
                 </table>
             </div>
 
