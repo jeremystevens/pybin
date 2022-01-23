@@ -13,11 +13,11 @@
 
 2. **Create database** 
 
-        python from main import db
+        python from application import db
     
         python db.create_all()
 
 
 3. **Run Server**
 
-       python main.py
+       python application.py
