@@ -8,6 +8,7 @@ Changes: in Master (01/23/22):
 5. added the missing image (/static/img/code.png)
 6. Changed table layout (responsive)
 7. Changed table Headers 1 Word (Better for mobile Viewing)
+8. Changed Apppliation:84 only generate 7 char ID
 
 Changes: in Maser: Quick-Fix (01/21/22):
 1. better formatting for raw code

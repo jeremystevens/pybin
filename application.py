@@ -80,7 +80,8 @@ def submit_paste():
             paste_name = paste_name
         date = datetime.now()
         # generate random id
-        random_id = generate_random_id(6, 8)
+        # changed to only generate 7 Character ID
+        random_id = generate_random_id(7, 7)
         # uses utf8lens fn to calculate string size in bytes.
         size_bt = utf8len(paste_text)
         hits_count = 0
