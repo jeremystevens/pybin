@@ -1,7 +1,6 @@
 # 3rd party
 flask
 werkzeug
-json
 sqlite3
 rstr
 flask_sqlalchemy
