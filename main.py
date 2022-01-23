@@ -39,17 +39,6 @@ class Post(db.Model):
     post_size = db.Column(db.String(800))
     post_hits = db.Column(db.String(8000))
 
-    def __init__(self):
-        self.pid = None
-        self.post_id = None
-        self.post_syntax = None
-        self.post_title = None
-        self.post_text = None
-        self.expiration = None
-        self.exposure = None
-        self.post_date = None
-        self.post_size = None
-
 
 # update the hit counter
 def update_hits(post_id):
@@ -76,7 +65,12 @@ def submit_paste():
         paste_exp = request.form['paste_exp']
         print(paste_exp)
         # get a datetime when the post will expire
-        expired_date = exp_datetime(paste_exp)
+        # if paste_exp == 0 then use never expires
+        if paste_exp == "0":
+            expired_date = "Never"
+            pass
+        else:
+            expired_date = exp_datetime(paste_exp)
         paste_exposure = request.form['exposure']
         paste_name = request.form['paste_title']
         date = datetime.now()
@@ -137,7 +131,7 @@ def get_post(random_id):
     # this updates the view count.
     update_hits(random_id)
     post_expire = post.query.filter_by(post_id=random_id).first().expiration
-    if post_expire == "0":
+    if post_expire == "Never":
         exp_date = "Never"
     else:
         exp_date = datetime.strptime(post_expire, '%Y-%m-%d %H:%M:%S.%f').strftime('%m/%d/%Y')
