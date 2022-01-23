@@ -1,5 +1,12 @@
 Development Changelog:
 
+Change: in Master (01/23/22):
+1. Fixed issue with the Expiration Date
+2. Added Call blank paste "Untitled"
+3. renamed from main.py >> application.py for azure deployment
+4. removed unused packages from requirements.txt and fixed typos
+5. added the missing image (/static/img/code.png)
+
 Changes: in Maser: Quick-Fix (01/21/22):
 1. better formatting for raw code
 2. Changed Table Header Names in posts.html
