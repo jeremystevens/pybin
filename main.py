@@ -73,6 +73,11 @@ def submit_paste():
             expired_date = exp_datetime(paste_exp)
         paste_exposure = request.form['exposure']
         paste_name = request.form['paste_title']
+        # if name is blank name it untitled
+        if paste_name == "":
+            paste_name = "Untitled"
+        else:
+            paste_name = paste_name
         date = datetime.now()
         # generate random id
         random_id = generate_random_id(6, 8)
