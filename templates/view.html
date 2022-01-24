@@ -101,17 +101,17 @@
 
     <div class="span8">
 
-        <div class="base-block">
+         <div class="row">">
 
 
             <center>
-                <div class="title">#
-                    {{ post_id }}
+                <div class="col-sm">
+                <div class="title"> <!---- Title goes here ---->
                 </div>
 
                 <!---img src="/static/img/Icon.png" height=50 width=50-->
 
-                &nbsp;&nbsp;<img src="/static/img/notepad.png" height=30 width=30>
+                &nbsp;&nbsp;<img src="/static/img/notepad.png" height=50 width=50>
 
                 <i><h3></h><b>
                     {{ post_title }}
@@ -129,7 +129,7 @@
                 {{ post_date }} | Syntax: <a href="../archive/{{post_syntax}}">
                 {{ post_syntax }}
             </a> | Size:
-                {{ post_size }} Bytes |
+                {{ post_size }} |
 
                 Views:
                 {{ post_hits }} | Expires:
@@ -143,6 +143,7 @@
                     <?=$editpaste;?><a href="" onclick="deletepaste(<?=$post_id?>);">
                         <?=$delpaste;?>
                     </a>
+                </div>
                 </div>
                 <br>
                 <!---- Removed Social Media Links here ---->
@@ -159,17 +160,10 @@
         </div>
 
     </div>
-    <div class="base-block">
-        <div class="title">Recent pastes</div>
 
-        <ul class="nav nav-list">
 
             <!--Recent Post go here -->
-            <li>
 
-            </li>
-            <li>
-        </ul>
     </div>
 
     </div>

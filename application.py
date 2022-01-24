@@ -12,11 +12,12 @@ import os
 import json
 import string
 import time
+import math
 from flask import Flask, render_template, request, url_for, redirect, flash, session, send_file
 from werkzeug.security import check_password_hash
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.sql.expression import update
-from data.db import get_connection, generate_random_id, utf8len, exp_datetime
+from data.db import get_connection, generate_random_id, utf8len, exp_datetime, convert_size
 from jinja2 import Environment, PackageLoader, select_autoescape, environment
 
 app = Flask(__name__)
@@ -133,6 +134,8 @@ def get_post(random_id):
     # convert date to human Readable(works)
     p_date = datetime.strptime(post_date, '%Y-%m-%d %H:%M:%S.%f').strftime('%m/%d/%Y')
     post_size = post.query.filter_by(post_id=random_id).first().post_size
+    # convert 1024 byes to KB
+    post_size = convert_size(int(post_size))
     post_hits = post.query.filter_by(post_id=random_id).first().post_hits
     # this updates the view count.
     update_hits(random_id)
