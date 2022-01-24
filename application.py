@@ -13,7 +13,7 @@ import json
 import string
 import time
 import math
-from flask import Flask, render_template, request, url_for, redirect, flash, session, send_file
+from flask import Flask, render_template, request, url_for, redirect, flash, session, send_file, Response
 from werkzeug.security import check_password_hash
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.sql.expression import update
@@ -148,6 +148,12 @@ def get_post(random_id):
     return render_template('view.html', post_id=post_id, post_title=post_title, post_syntax=post_syntax,
                            post_date=p_date, post_size=post_size, post_hits=post_hits, post_expire=exp_date,
                            post_text=post_text)
+
+
+# route to handle 404
+@app.errorhandler(404)
+def not_found(e):
+    return Response('Not found.')
 
 
 if __name__ == '__main__':
