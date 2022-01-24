@@ -153,7 +153,7 @@ def get_post(random_id):
 # route to handle 404
 @app.errorhandler(404)
 def not_found(e):
-    return Response('Not found.')
+    return render_template('404.html')
 
 
 if __name__ == '__main__':
