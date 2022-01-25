@@ -7,12 +7,17 @@ __maintainer__ = "Jeremy Stevens"
 __status__ = "Development"
 
 import datetime
+import threading
 from datetime import datetime
 import os
 import json
 import string
 import time
 import math
+import schedule
+import time
+import logging
+from threading import Thread
 from flask import Flask, render_template, request, url_for, redirect, flash, session, send_file, Response
 from werkzeug.security import check_password_hash
 from flask_sqlalchemy import SQLAlchemy
@@ -39,6 +44,24 @@ class Post(db.Model):
     post_date = db.Column(db.String(200))
     post_size = db.Column(db.String(800))
     post_hits = db.Column(db.String(8000))
+
+
+# Delete expired Post
+def prune_expired():
+    print("Pruning Post")
+    post = Post()
+    date_now = datetime.now()
+    post_date = list(map(lambda x: x.expiration, post.query.all()))
+    for p_date in post_date:
+        if str(date_now) > str(p_date):
+            post_id = post.query.filter_by(expiration=p_date).first().post_id
+            with open('deleted.txt', 'a') as output:
+                output.write(post_id)
+            post.query.filter_by(expiration=p_date).delete()
+            db.session.commit()
+        else:
+            # do nothing...
+            pass
 
 
 # update the hit counter
@@ -116,8 +139,11 @@ def download_file(random_id):
     return send_file(path, as_attachment=True)
 
 
+# view all public posts
 @app.route('/view/')
 def view_all():
+    # remove expired post
+    prune_expired()
     post = Post()
     dates = post.query.with_entities(Post.post_date).all()
     return render_template('posts.html', posts=post.query.all(), date=datetime.now())
@@ -126,6 +152,8 @@ def view_all():
 # View post by ID Route
 @app.route('/p/<random_id>')
 def get_post(random_id):
+    # remove expired post
+    prune_expired()
     post = Post()
     post_id = post.query.filter_by(post_id=random_id).first().post_id
     post_title = post.query.filter_by(post_id=random_id).first().post_title
@@ -150,10 +178,24 @@ def get_post(random_id):
                            post_text=post_text)
 
 
+# report abusive post.
+@app.route('/report/<random_id>')
+def report_post(random_id):
+    pass
+
+
 # route to handle 404
 @app.errorhandler(404)
 def not_found(e):
     return render_template('404.html')
+
+
+schedule.every(10).minutes.do(lambda: prune_expired())
+
+
+def run_cronjob():
+    while True:
+        schedule.run_pending()
 
 
 if __name__ == '__main__':

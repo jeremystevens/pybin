@@ -4,3 +4,4 @@ werkzeug
 pysqlite3
 rstr
 flask_sqlalchemy
+schedule
