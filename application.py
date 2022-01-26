@@ -24,7 +24,10 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.sql.expression import update
 from data.db import get_connection, generate_random_id, utf8len, exp_datetime, convert_size
 from jinja2 import Environment, PackageLoader, select_autoescape, environment
+from flask import Blueprint
+from flask_paginate import Pagination, get_page_parameter
 
+mod = Blueprint('post', __name__)
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'nots0s3cr3t'
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///pybin.db"
@@ -139,15 +142,27 @@ def download_file(random_id):
     return send_file(path, as_attachment=True)
 
 
+ROWS_PER_PAGE = 6
+
+
 # view all public posts
 @app.route('/view/')
 def view_all():
+    search = False
+    q = request.args.get('q')
+    if q:
+        search = True
+    page = request.args.get('page', 1, type=int)
     # remove expired post
     prune_expired()
+    user = "none"
     post = Post()
     dates = post.query.with_entities(Post.post_date).all()
     # filer out unlisted post
-    return render_template('posts.html', posts=post.query.filter_by(exposure="public").all(), date=datetime.now())
+    total_post = post.query.filter_by(exposure="public").paginate(page=page, per_page=ROWS_PER_PAGE)
+    public_post = post.query.filter_by(exposure="public").all()
+
+    return render_template('posts.html', date=datetime.now(), posts=total_post)
     # old code used below.
     # return render_template('posts.html', posts=post.query.all(), date=datetime.now())
 

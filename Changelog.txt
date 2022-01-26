@@ -1,5 +1,9 @@
 Development Changelog:
 
+Changes: in Dev-0.7-paginate: (01/25/22)
+1. added pagination to route view all post
+2. updated HTMl for changes above.
+
 Changes: in Dev-0.6-Quick-Fix: (01/25/22)
 1. Updated query(view all) to only show "public" post unlisted are exlcuded
 2. Added error handler for 500 Internal Server Errors
