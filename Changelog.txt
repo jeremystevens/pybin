@@ -1,5 +1,13 @@
 Development Changelog:
 
+Changes: in Dev-0.6-Quick-Fix: (01/25/22)
+1. Updated query(view all) to only show "public" post unlisted are exlcuded
+2. Added error handler for 500 Internal Server Errors
+
+Changes: in Dev-0.5: 01/24/22):
+1. Added Function and to prune expired post.
+2. added Cronjob function to start scheduler
+
 Changes: in Master (01/23/22):
 1. Fixed issue with the Expiration Date
 2. Added Call blank paste "Untitled"
