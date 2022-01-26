@@ -4,4 +4,5 @@ werkzeug
 pysqlite3
 rstr
 flask_sqlalchemy
+flask-paginate
 schedule
