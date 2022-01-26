@@ -146,7 +146,10 @@ def view_all():
     prune_expired()
     post = Post()
     dates = post.query.with_entities(Post.post_date).all()
-    return render_template('posts.html', posts=post.query.all(), date=datetime.now())
+    # filer out unlisted post
+    return render_template('posts.html', posts=post.query.filter_by(exposure="public").all(), date=datetime.now())
+    # old code used below.
+    # return render_template('posts.html', posts=post.query.all(), date=datetime.now())
 
 
 # View post by ID Route
@@ -188,6 +191,12 @@ def report_post(random_id):
 @app.errorhandler(404)
 def not_found(e):
     return render_template('404.html')
+
+
+@app.errorhandler(500)
+def internal_server_error():
+    return render_template('500.html')
+    pass
 
 
 schedule.every(10).minutes.do(lambda: prune_expired())
