@@ -1,5 +1,10 @@
 Development Changelog:
 
+Changes: in Dev-0.8-Search-Archive (01/26/22)
+1. Added Search Archive by Title Name
+2. Added Search Archive by Syntax
+3. Removed Report post May added back Later
+
 Changes: in Dev-0.7-paginate: (01/25/22)
 1. added pagination to route view all post
 2. updated HTMl for changes above.

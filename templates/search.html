@@ -63,11 +63,11 @@
                         <a class="nav-link" href="../view">View Pastes</a>
                     </li>
                 </ul>
-               <form class="d-flex" action="/search" method="post">
+                <form class="d-flex" action="/search" method="post">
                     <input class="form-control me-2" type="search" placeholder="Search" name="search" aria-label="Search">
                     <button class="btn btn-outline-success" type="submit">Search</button>
                 </form>
-            </div>
+                <div>
         </div>
     </nav>
 </header>
@@ -80,9 +80,9 @@
         <!--Here-->
 
         <div class="base-block">
-            <div class="title">Public Pastes</div>
+            <div class="title"></div>
 
-            <img src="/static/img/code.png" height="100" width="100">&nbsp;<font size="5">Code Archive</font>
+            <img src="/static/img/code.png" height="100" width="100">&nbsp;<font size="5">Searching Archive</font><i>&nbsp;(#{{query}})</i>
             <div class="table-responsive">
                 <Br><Br>
                 <table width="100%" Height="" id="archvie" border="0" class="table table-sm table-dark">

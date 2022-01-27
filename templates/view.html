@@ -64,8 +64,8 @@
                         <a class="nav-link" href="../view">View Pastes</a>
                     </li>
                 </ul>
-                <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                 <form class="d-flex" action="/search" method="post">
+                    <input class="form-control me-2" type="search" placeholder="Search" name="search" aria-label="Search">
                     <button class="btn btn-outline-success" type="submit">Search</button>
                 </form>
             </div>
@@ -126,7 +126,7 @@
                  #{{ post_id }} |
                 By:
                 anonymous on
-                {{ post_date }} | Syntax: <a href="../archive/{{post_syntax}}">
+                {{ post_date }} | Syntax: <a href="../s/{{post_syntax}}">
                 {{ post_syntax }}
             </a> | Size:
                 {{ post_size }} |
@@ -135,14 +135,10 @@
                 {{ post_hits }} | Expires:
                 {{ post_expire }} | <Br>
 
-                <div id="options" style="position:relative;left:0px;top:21%;width:100%;"><a href="../raw/{{ post_id }}"
+                <div id="options" style="position:relative;left:0px;top:21%;width:100%;">| <a href="../raw/{{ post_id }}"
                                                                                              target="popupwindow">Raw
                     Code</a>&nbsp;
-                    <?=$bitly;?>| <a href="/download/{{ post_id }}" target="popupwindow"> Download </a> &nbsp;| &nbsp;<a
-                            href="../report/{{ post_id }}">Report Abuse</a> &nbsp;
-                    <?=$editpaste;?><a href="" onclick="deletepaste(<?=$post_id?>);">
-                        <?=$delpaste;?>
-                    </a>
+                    <?=$bitly;?>| <a href="/download/{{ post_id }}" target="popupwindow"> Download </a> &nbsp;|
                 </div>
                 </div>
                 <br>
