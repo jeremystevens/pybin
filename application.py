@@ -22,6 +22,7 @@ from flask import Flask, render_template, request, url_for, redirect, flash, ses
 from werkzeug.security import check_password_hash
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.sql.expression import update
+from sqlalchemy import and_, or_, not_
 from data.db import get_connection, generate_random_id, utf8len, exp_datetime, convert_size
 from jinja2 import Environment, PackageLoader, select_autoescape, environment
 from flask import Blueprint
@@ -80,6 +81,35 @@ def update_hits(post_id):
 @app.route('/')
 def index():
     return render_template('index.html')
+
+
+ROWS_PER_PAGE = 6
+
+
+# Search archive by syntax
+@app.route('/s/<syntax>')
+def search_syntax(syntax):
+    post = Post()
+    query = syntax
+    search = "%{}%".format(query)
+    page = request.args.get('page', 1, type=int)
+    posts = Post.query.filter(Post.post_syntax.like(search)).paginate(page=page, per_page=ROWS_PER_PAGE)
+    return render_template('search.html', date=datetime.now(), posts=posts, query=query)
+
+
+# Search Archive by name
+@app.route("/search", methods=['GET', 'POST'])
+def search_archive():
+    if request.method == "POST":
+        query = request.form['search']
+        page = request.args.get('page', 1, type=int)
+        search = "%{}%".format(query)
+        post = Post()
+        posts = Post.query.filter(Post.post_title.like(search)).paginate(page=page, per_page=ROWS_PER_PAGE)
+        if posts == "":
+            posts = "Nothing Found"
+        # posts = post.query.filter(Post.post_title.like(search)).paginate(page=page,per_page=ROWS_PER_PAGE)
+        return render_template('search.html', date=datetime.now(), posts=posts, query=query)
 
 
 # Posting Route
