@@ -1,5 +1,9 @@
 Development Changelog:
 
+Changes: in Dev-0.9-Update-Syntax-List (05/29/22)
+1. Upated Syntax list to support all 292 Languages supported by Prism.Js
+2. Removed all the deprecated syntaxes.
+
 Changes: in Dev-0.8-Search-Archive (01/26/22)
 1. Added Search Archive by Title Name
 2. Added Search Archive by Syntax
