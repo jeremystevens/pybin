@@ -6,3 +6,4 @@ rstr
 flask_sqlalchemy
 flask-paginate
 schedule
+gunicorn
