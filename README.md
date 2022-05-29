@@ -6,7 +6,7 @@
 # Features 
  1. Store text online for a set period of time 
  2. Syntax highlighting support 292 Languages
- 3. Sext size in (k, kb, mb, gb)
+ 3. Text size in (b, kb, mb, gb)
  4. View count 
  5. View raw code 
  6. Download as text file
