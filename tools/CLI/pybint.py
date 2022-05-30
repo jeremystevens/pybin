@@ -19,6 +19,13 @@ ex. (http://www.yourserver.com/api)
 # SERVER ADDRESS
 SERVER = f"http://127.0.0.1:5000/api"
 
+'''' EXAMPLE USAGE'''
+#  -i (inputfile) -n (name the post) -s (syntax) -e (expires see reference below) -x (exposure) only public or unlisted
+
+#  Example usage
+# python pybint.py -i testfile.py -n helloworld42 -s python -e 1 -x public
+""" END OF EXAMPLE USAGE """
+
 # Args list
 parser = argparse.ArgumentParser(description='pybint', usage='%(prog)s [-insex]')
 parser.add_argument('-i', '--input', help='Input file name', required=True)
