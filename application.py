@@ -18,7 +18,7 @@ import schedule
 import time
 import logging
 from threading import Thread
-from flask import Flask, render_template, request, url_for, redirect, flash, session, send_file, Response
+from flask import Flask, render_template, request, url_for, redirect, flash, session, send_file, Response, abort
 from werkzeug.security import check_password_hash
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.sql.expression import update
@@ -81,6 +81,46 @@ def update_hits(post_id):
 @app.route('/')
 def index():
     return render_template('index.html')
+
+
+# API for pybin tools.
+@app.route('/api', methods=['GET', 'POST'])
+def api():
+    if request.method == "POST":
+        paste_text = request.form['paste_text']
+        paste_syntax = request.form['paste_syntax']
+        paste_exp = request.form['paste_exp']
+        print(paste_exp)
+        # get a datetime when the post will expire
+        # if paste_exp == 0 then use never expires
+        if paste_exp == "0":
+            expired_date = "Never"
+            pass
+        else:
+            expired_date = exp_datetime(paste_exp)
+        paste_exposure = request.form['exposure']
+        paste_name = request.form['paste_title']
+        # if name is blank name it untitled
+        if paste_name == "":
+            paste_name = "Untitled"
+        else:
+            paste_name = paste_name
+        date = datetime.now()
+        # generate random id
+        # changed to only generate 7 Character ID
+        random_id = generate_random_id(7, 7)
+        # uses utf8lens fn to calculate string size in bytes.
+        size_bt = utf8len(paste_text)
+        hits_count = 0
+        make_post = Post(post_id=random_id, post_syntax=paste_syntax, post_title=paste_name, post_text=paste_text,
+                         expiration=expired_date, exposure=paste_exposure, post_date=date, post_size=size_bt,
+                         post_hits=hits_count)
+        db.session.add(make_post)
+        db.session.commit()
+        return random_id
+    else:
+        # if not data is posted show 404
+        abort(404)
 
 
 ROWS_PER_PAGE = 6
