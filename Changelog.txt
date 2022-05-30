@@ -1,5 +1,8 @@
 Development Changelog:
 
+changes: in V1.1.2-R1 (05/30/22)
+1. added some missing syntax to index.html
+
 Changes: in V1.1.2 Dart-Syntax-Work-around(05/29/22)
 1. fixed issue #20 Temporary-Fix using the "clike" syntax.
 
