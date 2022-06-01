@@ -326,9 +326,9 @@ unrealscript
 uorazor
 uri
 v
-Vala - vala
-VB.Net - vbnet
-Velocity - velocity
+vala
+vbnet
+velocity
 verilog
 vhdl
 vim
