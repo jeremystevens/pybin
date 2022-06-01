@@ -393,7 +393,7 @@ if not args.exposure:
 
 # payload
 payload = {'paste_title': name, 'paste_syntax': syntax, 'paste_exp': expire, 'exposure': exposure, 'paste_text': str}
-# webrequest
+# send data 
 r = requests.post(SERVER, data=payload)
 status = r.status_code
 text = r.text
