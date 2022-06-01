@@ -1,3 +1,5 @@
+# /usr/bin/python
+
 """ application.py: - the main pybin flask server """
 
 # Copyright 2022 Jeremy Stevens <jeremiahstevens@gmail.com>
@@ -45,6 +47,8 @@ from data.db import get_connection, generate_random_id, utf8len, exp_datetime, c
 from jinja2 import Environment, PackageLoader, select_autoescape, environment
 from flask import Blueprint
 from flask_paginate import Pagination, get_page_parameter
+# Local imports
+from config import admin
 
 mod = Blueprint('post', __name__)
 app = Flask(__name__)
@@ -54,6 +58,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 ROWS_PER_PAGE = 6
+
 
 # db model
 class Post(db.Model):
