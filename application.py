@@ -1,10 +1,28 @@
-""" application.py: the main python fIle"""
+""" application.py: - the main pybin flask server """
 
-__author__ = "Jeremy Stevens"
-__license__ = "GPL"
-__version__ = "1.0.0"
-__maintainer__ = "Jeremy Stevens"
-__status__ = "Development"
+# Copyright 2022 Jeremy Stevens <jeremiahstevens@gmail.com>
+#
+# Permission is hereby granted, free of charge, to any person obtaining
+# a copy of this software and associated documentation files (the
+# "Software"), to deal in the Software without restriction, including
+# without limitation the rights to use, copy, modify, merge, publish,
+# distribute, sublicense, and/or sell copies of the Software, and to
+# permit persons to whom the Software is furnished to do so, subject to
+# the following conditions:
+#
+# The above copyright notice and this permission notice shall be
+# included in all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+# EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+# MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+# NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+# LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+# OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+# WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+__version__ = '1.1.3'
+
+# ============================================================
 
 import datetime
 import threading
@@ -35,6 +53,7 @@ app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///pybin.db"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
+ROWS_PER_PAGE = 6
 
 # db model
 class Post(db.Model):
@@ -121,9 +140,6 @@ def api():
     else:
         # if not data is posted show 404
         abort(404)
-
-
-ROWS_PER_PAGE = 6
 
 
 # Search archive by syntax
