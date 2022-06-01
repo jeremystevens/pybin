@@ -1,6 +1,11 @@
 Development Changelog:
 
-changes: in V1.1.2-R1 (05/30/22)
+Changes: In V1.1.3 (05/30/22)
+1. Added API for using external programs to post to pybin
+2. Added CLI script (pybint.py-V1.0.0-beta) for posting to pybin
+3. Added Pybin Tool V1.0.0-Beta for Windows
+
+Changes: in V1.1.2-R1-Quick-Fix (05/30/22)
 1. added some missing syntax to index.html
 
 Changes: in V1.1.2 Dart-Syntax-Work-around(05/29/22)
