@@ -140,6 +140,9 @@ def login():
     return render_template('adminlogin.html')
 
 
+"""" ADMIN PANEL PAGE """
+
+
 @app.route('/apanel')
 @flask_login.login_required
 def protected():
