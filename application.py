@@ -34,6 +34,8 @@ import json
 import string
 import time
 import math
+
+import flask
 import schedule
 import time
 import logging
@@ -47,16 +49,22 @@ from data.db import get_connection, generate_random_id, utf8len, exp_datetime, c
 from jinja2 import Environment, PackageLoader, select_autoescape, environment
 from flask import Blueprint
 from flask_paginate import Pagination, get_page_parameter
+import flask_login
+
 # Local imports
-from config import admin
+from config import users
 
 mod = Blueprint('post', __name__)
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'nots0s3cr3t'
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///pybin.db"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config["SESSION_PERMANENT"] = False
+app.config['SESSION_TYPE'] = 'filesystem'
+login_manager = flask_login.LoginManager()
+login_manager.init_app(app)
 db = SQLAlchemy(app)
-
 ROWS_PER_PAGE = 6
 
 
@@ -74,17 +82,85 @@ class Post(db.Model):
     post_hits = db.Column(db.String(8000))
 
 
+""" 
+ Flask Login Manager
+"""
+
+
+class User(flask_login.UserMixin):
+    pass
+
+
+@login_manager.user_loader
+def user_loader(email):
+    if email not in users:
+        return
+    user = User()
+    user.id = email
+    return user
+
+
+"""  LOGOUT """
+
+
+@app.route('/logout')
+def logout():
+    session["user_name"] = None
+    flask_login.logout_user()
+    flask.flash('Logged out')
+    session.clear()
+    return redirect(url_for('login'))
+
+
+#  Admin login Page
+@app.route('/admin', methods=['GET', 'POST'])
+def login():
+    if flask.request.method == 'GET':
+        return render_template('adminlogin.html')
+    username = flask.request.form['username']
+    if not username.isupper():
+        # capitalize first letter
+        username = username.capitalize()
+    else:
+        username = username
+    try:
+        if flask.request.form['password'] == users[username]['password']:
+            user = User()
+            user.id = username
+            session['user_name'] = username
+            flask_login.login_user(user)
+            return flask.redirect(flask.url_for('protected'))
+    except KeyError as ke:
+        print('KeyError ', ke)
+    if 'user_name' in session:
+        username = session['user_name']
+        return redirect('/protected')
+    # flash incorrect username or password
+    flash('Incorrect username or password')
+    return render_template('adminlogin.html')
+
+
+@app.route('/apanel')
+@flask_login.login_required
+def protected():
+    flask.flash("")
+    return render_template('adminpanel.html')
+
+
 # Delete expired Post
 def prune_expired():
-    print("Pruning Post")
+    print("Pruning expired Post")
     post = Post()
     date_now = datetime.now()
     post_date = list(map(lambda x: x.expiration, post.query.all()))
     for p_date in post_date:
         if str(date_now) > str(p_date):
             post_id = post.query.filter_by(expiration=p_date).first().post_id
+            # post date + post_id new line after
+            date = str(datetime.now())
+            del_post = "Deleted on: " + date + " " + post_id + "\n"
             with open('deleted.txt', 'a') as output:
-                output.write(post_id)
+                output.write(del_post)
             post.query.filter_by(expiration=p_date).delete()
             db.session.commit()
         else:
@@ -309,6 +385,7 @@ schedule.every(10).minutes.do(lambda: prune_expired())
 
 
 def run_cronjob():
+    # Infinity loop to run scheduler and prune expired post every 10 minutes
     while True:
         schedule.run_pending()
 
