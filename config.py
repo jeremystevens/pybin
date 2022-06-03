@@ -25,11 +25,10 @@
 __version__ = '1.1.3'
 
 # ============================================================
-
-
+# Configuration for Admin Panel
+# ============================================================
 """
  Site Administrators 
 """
 # you can add administrator accounts here.
-admin = {'Admin1': {'password': '123'}, 'Admin2': {'password': '123'}}
-
+users = {'Admin1': {'password': '123'}, 'Admin2': {'password': '123'}}
