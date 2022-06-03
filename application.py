@@ -150,6 +150,36 @@ def protected():
     return render_template('adminpanel.html')
 
 
+""" Admin Shutdown Server"""
+
+
+def shutdown_server():
+    func = request.environ.get('werkzeug.server.shutdown')
+    if func is None:
+        raise RuntimeError('Not running with the Werkzeug Server')
+    func()
+
+
+@app.get('/shutdown')
+@flask_login.login_required
+def shutdown():
+    shutdown_server()
+    return 'Server shutting down...'
+
+
+# Delete Report Post.
+@app.route('/del_post/<random_id>',  methods=['GET', 'POST'])
+@flask_login.login_required
+def delet12epost():
+    if request.method == "POST":
+
+
+        pass
+    return 'Error Please Try Again'
+
+""" END OF ADMIN PANEL """
+
+
 # Delete expired Post
 def prune_expired():
     print("Pruning expired Post")
@@ -328,6 +358,7 @@ def view_all():
     user = "none"
     post = Post()
     dates = post.query.with_entities(Post.post_date).all()
+
     # filer out unlisted post
     total_post = post.query.filter_by(exposure="public").paginate(page=page, per_page=ROWS_PER_PAGE)
     public_post = post.query.filter_by(exposure="public").all()
