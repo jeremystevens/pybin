@@ -160,21 +160,35 @@ def shutdown_server():
     func()
 
 
-@app.get('/shutdown')
+@app.route('/shutdown', methods=['GET'])
 @flask_login.login_required
 def shutdown():
+    # count down to shutdown
+    for i in range(10, 0, -1):
+        time.sleep(1)
+        # flash message count down until shutdown
+        flask.flash(str(i) + ' seconds until shutdown')
+        print('Shutdown in ', i, ' seconds')
     shutdown_server()
-    return 'Server shutting down...'
+    return render_template('adminpanel.html')
 
 
 # Delete Report Post.
-@app.route('/del_post/<random_id>',  methods=['GET', 'POST'])
+@app.route('/del_post',  methods=['GET', 'POST'])
 @flask_login.login_required
 def delet12epost():
     if request.method == "POST":
-
-
-        pass
+        post_id  = request.form['post_id']
+        # save post id to deleted.txt
+        with open('deleted.txt', 'a') as f:
+            # get session id for user
+            user_id = session['user_name']
+            f.write(post_id + ' Deleted by ' + user_id + '\n')
+        db.session.query(Post).filter(Post.post_id == post_id).delete()
+        db.session.commit()
+        # flash message
+        flask.flash('deleted: ' + post_id)
+        return redirect(url_for('protected'))
     return 'Error Please Try Again'
 
 """ END OF ADMIN PANEL """
