@@ -22,7 +22,7 @@
 # LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-__version__ = '1.1.3'
+__version__ = '1.1.4'
 
 # ============================================================
 
@@ -67,8 +67,7 @@ login_manager.init_app(app)
 db = SQLAlchemy(app)
 ROWS_PER_PAGE = 6
 
-
-# db model
+# Post DB Table
 class Post(db.Model):
     pid = db.Column(db.Integer, autoincrement=True, primary_key=True)
     post_id = db.Column(db.String(80), unique=True, nullable=False)
@@ -80,6 +79,11 @@ class Post(db.Model):
     post_date = db.Column(db.String(200))
     post_size = db.Column(db.String(800))
     post_hits = db.Column(db.String(8000))
+
+
+# user login db
+class User(db.Model):
+    pass
 
 
 """ 
