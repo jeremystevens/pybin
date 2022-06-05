@@ -31,4 +31,4 @@ __version__ = '1.1.3'
  Site Administrators 
 """
 # you can add administrator accounts here.
-users = {'Admin1': {'password': '123'}, 'Admin2': {'password': '123'}}
+admins = {'Admin1': {'password': '123'}, 'Admin2': {'password': '123'}}

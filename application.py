@@ -1,7 +1,4 @@
 # /usr/bin/python
-
-""" application.py: - the main pybin flask server """
-
 # Copyright 2022 Jeremy Stevens <jeremiahstevens@gmail.com>
 #
 # Permission is hereby granted, free of charge, to any person obtaining
@@ -25,6 +22,8 @@
 __version__ = '1.1.4'
 
 # ============================================================
+""" application.py: - the main pybin flask server """
+# ============================================================
 
 import datetime
 import threading
@@ -41,10 +40,12 @@ import time
 import logging
 from threading import Thread
 from flask import Flask, render_template, request, url_for, redirect, flash, session, send_file, Response, abort
-from werkzeug.security import check_password_hash
+from werkzeug.security import generate_password_hash, check_password_hash
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import Boolean, DateTime, Column, Integer, String, ForeignKey, Table
 from sqlalchemy.sql.expression import update
 from sqlalchemy import and_, or_, not_
+from sqlalchemy.sql import func
 from data.db import get_connection, generate_random_id, utf8len, exp_datetime, convert_size
 from jinja2 import Environment, PackageLoader, select_autoescape, environment
 from flask import Blueprint
@@ -52,7 +53,7 @@ from flask_paginate import Pagination, get_page_parameter
 import flask_login
 
 # Local imports
-from config import users
+from config import admins
 
 mod = Blueprint('post', __name__)
 app = Flask(__name__)
@@ -67,10 +68,19 @@ login_manager.init_app(app)
 db = SQLAlchemy(app)
 ROWS_PER_PAGE = 6
 
+""""
+
+# ============================================================
+                 MODELS AND DATABASE
+# ============================================================
+"""
+
+
 # Post DB Table
 class Post(db.Model):
     pid = db.Column(db.Integer, autoincrement=True, primary_key=True)
     post_id = db.Column(db.String(80), unique=True, nullable=False)
+    poster = db.Column(db.String(100), nullable=True)
     post_syntax = db.Column(db.String(80))
     post_title = db.Column(db.String(200))
     post_text = db.Column(db.String(8000))
@@ -82,12 +92,34 @@ class Post(db.Model):
 
 
 # user login db
-class User(db.Model):
-    pass
+class Users(db.Model):
+    # username db
+    id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    username = db.Column(db.String(80), unique=True, nullable=False)
+    password = db.Column(db.String(80), nullable=False)
+    email = db.Column(db.String(80), unique=True, nullable=False)  # is active
+    is_active = db.Column(db.Boolean, default=False)
 
 
-""" 
- Flask Login Manager
+# user profile
+class Profile(db.Model):
+    # location column
+    id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    username = db.Column(db.String(80), unique=True, nullable=False)
+    location = db.Column(db.String(80), unique=True, nullable=True)
+    post_count = db.Column(db.String(80), unique=True, nullable=True)
+    total_views = db.Column(db.String(80), unique=True, nullable=True)
+    languages = db.Column(db.String(80), unique=True, nullable=True)
+    # join date column
+    join_date = db.Column(DateTime(timezone=True), server_default=func.now())
+    # last login column
+    last_login = db.Column(DateTime(timezone=True), onupdate=func.now())
+
+
+"""
+# ============================================================
+                  Flask Login Manager
+# ============================================================
 """
 
 
@@ -97,14 +129,18 @@ class User(flask_login.UserMixin):
 
 @login_manager.user_loader
 def user_loader(email):
-    if email not in users:
+    if email not in admins:
         return
     user = User()
     user.id = email
     return user
 
 
-"""  LOGOUT """
+"""
+# ============================================================ 
+         LOGOUT 
+# ============================================================
+ """
 
 
 @app.route('/logout')
@@ -113,7 +149,7 @@ def logout():
     flask_login.logout_user()
     flask.flash('Logged out')
     session.clear()
-    return redirect(url_for('login'))
+    return redirect(url_for('index'))
 
 
 #  Admin login Page
@@ -128,7 +164,7 @@ def login():
     else:
         username = username
     try:
-        if flask.request.form['password'] == users[username]['password']:
+        if flask.request.form['password'] == admins[username]['password']:
             user = User()
             user.id = username
             session['user_name'] = username
@@ -144,7 +180,11 @@ def login():
     return render_template('adminlogin.html')
 
 
-"""" ADMIN PANEL PAGE """
+"""
+# ============================================================
+            ADMIN PANEL PAGE 
+# ============================================================
+"""
 
 
 @app.route('/apanel')
@@ -154,7 +194,11 @@ def protected():
     return render_template('adminpanel.html')
 
 
-""" Admin Shutdown Server"""
+"""
+# ============================================================
+         Admin Shutdown Server
+# ============================================================
+ """
 
 
 def shutdown_server():
@@ -177,12 +221,19 @@ def shutdown():
     return render_template('adminpanel.html')
 
 
-# Delete Report Post.
-@app.route('/del_post',  methods=['GET', 'POST'])
+"""
+# ============================================================
+            Admin Delete Post   
+# ============================================================
+"""
+
+
+# Delete Reported Post.
+@app.route('/del_post', methods=['GET', 'POST'])
 @flask_login.login_required
-def delet12epost():
+def delete_post():
     if request.method == "POST":
-        post_id  = request.form['post_id']
+        post_id = request.form['post_id']
         # save post id to deleted.txt
         with open('deleted.txt', 'a') as f:
             # get session id for user
@@ -195,7 +246,99 @@ def delet12epost():
         return redirect(url_for('protected'))
     return 'Error Please Try Again'
 
-""" END OF ADMIN PANEL """
+
+""" 
+# ============================================================
+            END OF ADMIN PANEL 
+# ============================================================
+"""
+
+"""
+# ============================================================
+            USER Registration 
+# ============================================================
+"""
+
+
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    if request.method == 'GET':
+        return render_template('register.html')
+    username = request.form['username']
+    password = request.form['password']
+    # hash password
+    password = generate_password_hash(password)
+    email = request.form['email']
+    # check if username is already in db
+    if Users.query.filter_by(username=username).first():
+        flask.flash('Username already exists')
+        return render_template('register.html')
+    # check if email is already in db
+    if Users.query.filter_by(email=email).first():
+        flask.flash('Email already exists')
+        return render_template('register.html')
+    # check if password is less than 8 characters
+    if len(password) < 8:
+        flash('Password must be at least 8 characters')
+        return render_template('register.html')
+    # commit to db
+    db.session.add(Users(username=username, password=password, email=email))
+    db.session.commit()
+    db.session.close()
+    # create user profile in db
+    db.session.add(Profile(username=username))
+    db.session.commit()
+    db.session.close_all()
+    # flash message
+    flash('Successfully registered, you can now login')
+    return render_template('register.html')
+
+
+"""
+# ============================================================
+           User Login Page
+# ============================================================
+"""
+
+
+@app.route('/login', methods=['GET', 'POST'])
+def user_login():
+    if flask.request.method == 'GET':
+        return render_template('login.html')
+    username = flask.request.form['username']
+    password = flask.request.form['password']
+    # check if username is in user db
+    # check username and check_password_hash
+    if not Users.query.filter_by(username=username).first():
+        flask.flash('incorrect username')
+        return render_template('login.html')
+    # check if password is correct
+    if not check_password_hash(Users.query.filter_by(username=username).first().password, password):
+        flask.flash('incorrect password')
+        return render_template('login.html')
+    # create user object
+    users = Users()
+    users.id = username
+    # set user to authenticated user
+    # login user
+    flask_login.login_user(users)
+    # flash message
+    flask.flash('Logged in')
+    session['user_name'] = username
+    current_user = users.id
+    # update the last login column
+    db.session.query(Profile).filter(Profile.username == username).update({"last_login": datetime.now()})
+    db.session.commit()
+    db.session.close_all()
+    return redirect(url_for('index'))
+
+
+"""
+
+# ============================================================
+          GENERAL SITE ROUTES 
+# ============================================================
+"""
 
 
 # Delete expired Post
@@ -231,7 +374,14 @@ def update_hits(post_id):
 # Main index
 @app.route('/')
 def index():
-    return render_template('index.html')
+    # if session is set  get session id
+    if 'user_name' in session:
+        user_name = session['user_name']
+        # display username on page with link to profile
+        return render_template('index.html', username=user_name)
+    else:
+        # display login button
+        return render_template('index.html')
 
 
 # API for pybin tools.
@@ -239,6 +389,8 @@ def index():
 def api():
     if request.method == "POST":
         paste_text = request.form['paste_text']
+        # set poster to anonymous
+        poster = "anonymous"
         paste_syntax = request.form['paste_syntax']
         paste_exp = request.form['paste_exp']
         print(paste_exp)
@@ -263,7 +415,8 @@ def api():
         # uses utf8lens fn to calculate string size in bytes.
         size_bt = utf8len(paste_text)
         hits_count = 0
-        make_post = Post(post_id=random_id, post_syntax=paste_syntax, post_title=paste_name, post_text=paste_text,
+        make_post = Post(post_id=random_id, poster=poster, post_syntax=paste_syntax, post_title=paste_name,
+                         post_text=paste_text,
                          expiration=expired_date, exposure=paste_exposure, post_date=date, post_size=size_bt,
                          post_hits=hits_count)
         db.session.add(make_post)
@@ -288,7 +441,12 @@ def search_syntax(syntax):
 # Search Archive by name
 @app.route("/search", methods=['GET', 'POST'])
 def search_archive():
+    # get session
+    if 'user_name' in session:
+        user_name = session['user_name']
     if request.method == "POST":
+        if 'user_name' in session:
+            user_name = session['user_name']
         query = request.form['search']
         page = request.args.get('page', 1, type=int)
         search = "%{}%".format(query)
@@ -297,7 +455,7 @@ def search_archive():
         if posts == "":
             posts = "Nothing Found"
         # posts = post.query.filter(Post.post_title.like(search)).paginate(page=page,per_page=ROWS_PER_PAGE)
-        return render_template('search.html', date=datetime.now(), posts=posts, query=query)
+        return render_template('search.html', date=datetime.now(), posts=posts, query=query, username=user_name)
 
 
 # Posting Route
@@ -306,6 +464,11 @@ def search_archive():
 def submit_paste():
     if request.method == 'POST':
         paste_text = request.form['paste_text']
+        # if session is set then use the session user name
+        if 'user_name' in session:
+            poster = session['user_name']
+        else:
+            poster = "Anonymous"
         paste_syntax = request.form['paste_syntax']
         paste_exp = request.form['paste_exp']
         print(paste_exp)
@@ -330,7 +493,8 @@ def submit_paste():
         # uses utf8lens fn to calculate string size in bytes.
         size_bt = utf8len(paste_text)
         hits_count = 0
-        make_post = Post(post_id=random_id, post_syntax=paste_syntax, post_title=paste_name, post_text=paste_text,
+        make_post = Post(post_id=random_id, poster=poster, post_syntax=paste_syntax, post_title=paste_name,
+                         post_text=paste_text,
                          expiration=expired_date, exposure=paste_exposure, post_date=date, post_size=size_bt,
                          post_hits=hits_count)
         db.session.add(make_post)
@@ -366,6 +530,11 @@ ROWS_PER_PAGE = 6
 # view all public posts
 @app.route('/view/')
 def view_all():
+    # get session
+    if 'user_name' in session:
+        user_name = session['user_name']
+    else:
+        user_name = "Anonymous"
     search = False
     q = request.args.get('q')
     if q:
@@ -376,12 +545,10 @@ def view_all():
     user = "none"
     post = Post()
     dates = post.query.with_entities(Post.post_date).all()
-
     # filer out unlisted post
     total_post = post.query.filter_by(exposure="public").paginate(page=page, per_page=ROWS_PER_PAGE)
     public_post = post.query.filter_by(exposure="public").all()
-
-    return render_template('posts.html', date=datetime.now(), posts=total_post)
+    return render_template('posts.html', date=datetime.now(), posts=total_post, username=user_name)
     # old code used below.
     # return render_template('posts.html', posts=post.query.all(), date=datetime.now())
 
@@ -393,6 +560,12 @@ def get_post(random_id):
     prune_expired()
     post = Post()
     post_id = post.query.filter_by(post_id=random_id).first().post_id
+    poster = post.query.filter_by(post_id=random_id).first().poster
+    # if no session then poster name = anonymous
+    if poster == "":
+        poster = "Anonymous"
+    else:
+        poster = poster
     post_title = post.query.filter_by(post_id=random_id).first().post_title
     post_syntax = post.query.filter_by(post_id=random_id).first().post_syntax
     post_date = post.query.filter_by(post_id=random_id).first().post_date
@@ -410,7 +583,7 @@ def get_post(random_id):
     else:
         exp_date = datetime.strptime(post_expire, '%Y-%m-%d %H:%M:%S.%f').strftime('%m/%d/%Y')
     post_text = post.query.filter_by(post_id=random_id).first().post_text
-    return render_template('view.html', post_id=post_id, post_title=post_title, post_syntax=post_syntax,
+    return render_template('view.html', post_id=post_id, poster=poster, post_title=post_title, post_syntax=post_syntax,
                            post_date=p_date, post_size=post_size, post_hits=post_hits, post_expire=exp_date,
                            post_text=post_text)
 
