@@ -534,7 +534,7 @@ def view_all():
     if 'user_name' in session:
         user_name = session['user_name']
     else:
-        user_name = "Anonymous"
+        user_name = None
     search = False
     q = request.args.get('q')
     if q:
