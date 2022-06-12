@@ -1,4 +1,5 @@
 Development Changelog:
+
 Changes: in V1.1.4-R2 (06/10/22)
 1. Changed HTML to fix login button Placement.
 2. Changed login if sessions are not set.
@@ -56,7 +57,7 @@ Changes: in Master (01/23/22):
 5. added the missing image (/static/img/code.png)
 6. Changed table layout (responsive)
 7. Changed table Headers 1 Word (Better for mobile Viewing)
-8. Changed Apppliation:84 only generate 7 char ID
+:8. Changed Apppliation:84 only generate 7 char ID
 9. Added function to convert file size (b, kb, mb) etc..
 
 Changes: in Maser: Quick-Fix (01/21/22):
