@@ -2,7 +2,7 @@ Development Changelog:
 
 Changes: in V1.1.4-R2 (06/10/22)
 1. Changed HTML to fix login button Placement.
-2. Changed login if sessions are not set.
+ 2. Changed login if sessions are not set.
 
 Changes: in V1.1.4 (06/03/22)
 1. Added  Admin Login Page
