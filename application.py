@@ -556,6 +556,11 @@ def view_all():
 # View post by ID Route
 @app.route('/p/<random_id>')
 def get_post(random_id):
+    # if session is set then use the session user name
+    if 'user_name' in session:
+        user_name = session['user_name']
+    else:
+        user_name = None
     # remove expired post
     prune_expired()
     post = Post()
@@ -566,6 +571,15 @@ def get_post(random_id):
         poster = "Anonymous"
     else:
         poster = poster
+        profile = Profile()
+        total_views = profile.query.filter_by(username=poster).first().total_views
+        if total_views == "":
+            total_views = 0
+        total_views = int(total_views) + 1
+        profile.query.filter_by(username=poster).update(dict(total_views=total_views))
+        db.session.commit()
+        print(total_views)
+
     post_title = post.query.filter_by(post_id=random_id).first().post_title
     post_syntax = post.query.filter_by(post_id=random_id).first().post_syntax
     post_date = post.query.filter_by(post_id=random_id).first().post_date
@@ -585,7 +599,70 @@ def get_post(random_id):
     post_text = post.query.filter_by(post_id=random_id).first().post_text
     return render_template('view.html', post_id=post_id, poster=poster, post_title=post_title, post_syntax=post_syntax,
                            post_date=p_date, post_size=post_size, post_hits=post_hits, post_expire=exp_date,
-                           post_text=post_text)
+                           post_text=post_text, username=user_name)
+
+
+""" user profile page """
+
+# user profile page
+@app.route('/profile/<username>')
+def profile(username):
+    # get session
+    if 'user_name' in session:
+        user_name = session['user_name']
+    else:
+        user_name = None
+    # get user profile
+    users = Users()
+    # get user post
+    post = Post()
+    profile = Profile()
+    user_post = post.query.filter_by(poster=username).all()
+    # get post dates
+    post_date = post.query.with_entities(Post.post_date).all()
+    # users location
+    user_location = profile.query.filter_by(username=username).first().location
+    if user_location == None:
+        user_location = "N/A"
+    else:
+        user_location = user_location
+    # users post count
+    user_post_count = post.query.filter_by(poster=username).count()
+    # total views of user
+    user_total_views = profile.query.filter_by(username=username).first().total_views
+    if user_total_views == None:
+        user_total_views = 0
+    else:
+         user_total_views = user_total_views
+    # post count by user
+    user_post_count = post.query.filter_by(poster=username).count()
+    if user_post_count == None:
+        user_post_count = 0
+    else:
+        user_post_count = user_post_count
+    # last login time
+    user_last_login = profile.query.filter_by(username=username).first().last_login
+    # convert to string format
+    user_last_login = str(user_last_login)
+    # convert to human readable
+    user_last_login = datetime.strptime(user_last_login, '%Y-%m-%d %H:%M:%f').strftime('%m/%d/%Y')
+    # join_date
+    user_join_date = profile.query.filter_by(username=username).first().join_date
+    user_join_date = str(user_join_date)
+    # convert to human readable
+    # convert to %m/%d/%Y
+    user_join_date = datetime.strptime(user_join_date, '%Y-%m-%d %H:%M:%f').strftime('%m/%d/%Y')
+    # format post Dates to human readable
+    for i in range(len(post_date)):
+        post_date[i] = datetime.strptime(post_date[i][0], '%Y-%m-%d %H:%M:%S.%f').strftime('%m/%d/%Y')
+        #post_date[i] = datetime.strptime(post_date[i][0], '%Y-%m-%d %H:%M:%S.%f').strftime('%m/%d/%Y')
+        p_date = post_date[i]
+        #p_date = datetime.strptime(post_date[i], '%Y-%m-%d').strftime('%m/%d/%Y')
+    # return user profile
+    return render_template('profile.html', user_name=user_name, username=username, user_location=user_location,
+                            user_post_count=user_post_count, user_total_views=user_total_views,
+                            posts=user_post, user_last_login=user_last_login, date=p_date, user_join_date=user_join_date)
+
 
 
 # report abusive post.

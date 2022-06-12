@@ -104,7 +104,7 @@
                     <tbody>
                     <tr class="table-light">
                         <th scope="row"><a href="../p/{{ post.post_id }}">{{ post.post_title }}</a></th>
-                        <td>{{ date.strftime('%Y-%m-%d') }}</td>
+                        <td>{{ post.post_date }}</td>
                         <td>{{ post.post_syntax }}</td>
                         {% endfor %}
                     </tr>
