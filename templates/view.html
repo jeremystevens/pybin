@@ -130,7 +130,11 @@
                     <br>
                     #{{ post_id }} |
                     By:
-                     {{ poster }} on
+                    {% if poster != "Anonymous"%}
+                     <A href="../profile/{{poster}}">{{ poster }}</a> on
+                    {% else %}
+                    {{ poster }} on
+                    {% endif %}
                     {{ post_date }} | Syntax: <a href="../s/{{ post_syntax }}">
                     {{ post_syntax }}
                 </a> | Size:
