@@ -164,7 +164,7 @@
                      {% for post in posts %}
                     <tr>
 
-                        <td nowrap width="45"  id=""><span class="whitetext_md"><B><a href="../p/{{ post.post_id }}">&nbsp;{{ post.post_title }}</B><hr></td>
+                        <td nowrap width="45"  id=""><span class="whitetext_md"><B><a href="../p/{{ post.post_id }}">{{ post.post_title }}</B><hr></td>
                         <td nowrap width="45"><span class="whitetext_md"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ date }}</b><Hr></span></td>
                         <td nowrap width="45" ><span class="whitetext_md"><b><a href="../s/{{ post.post_syntax }}">{{ post.post_syntax }}</a></b><hr></span></td>
                         {% endfor %}
