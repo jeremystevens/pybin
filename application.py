@@ -145,8 +145,9 @@ def user_loader(email):
 
 @app.route('/logout')
 def logout():
-    session["user_name"] = None
+    session.clear()
     flask_login.logout_user()
+    # destroy session
     flask.flash('Logged out')
     session.clear()
     return redirect(url_for('index'))
@@ -560,7 +561,9 @@ def get_post(random_id):
     if 'user_name' in session:
         user_name = session['user_name']
     else:
-        user_name = None
+        # clear the session
+        session.clear()
+        user_name = "Anonymous"
     # remove expired post
     prune_expired()
     post = Post()
@@ -580,6 +583,8 @@ def get_post(random_id):
         poster = "Anonymous"
     else:
         poster = poster
+    # if poster is not anonymous then update profile view count etc.
+    if poster != "Anonymous":
         profile = Profile()
         total_views = profile.query.filter_by(username=poster).first().total_views
         if total_views == "":
@@ -587,8 +592,6 @@ def get_post(random_id):
         total_views = int(total_views) + 1
         profile.query.filter_by(username=poster).update(dict(total_views=total_views))
         db.session.commit()
-        print(total_views)
-
     post_title = post.query.filter_by(post_id=random_id).first().post_title
     post_syntax = post.query.filter_by(post_id=random_id).first().post_syntax
     post_date = post.query.filter_by(post_id=random_id).first().post_date
@@ -620,7 +623,7 @@ def profile(username):
     if 'user_name' in session:
         user_name = session['user_name']
     else:
-        user_name = None
+        user_name = "Anonymous"
     # get user profile
     users = Users()
     # get user post

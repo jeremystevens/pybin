@@ -63,11 +63,11 @@
                         <a class="nav-link" href="../view">View Pastes</a>
                     </li>
                 </ul>
-    {% if username%}
-    <p><a href="/profile/{{username}}" class="text-primary">{{ username }}</a> &nbsp; &nbsp; &nbsp;</p>
+    {% if username == "Anonymous"%}
+                 <a class="btn btn-primary" href="/login" role="button">login</a>&nbsp; &nbsp;
     </a>
     {% else %}
-    <a class="btn btn-primary" href="/login" role="button">login</a>&nbsp; &nbsp;
+    <p><a href="/profile/{{username}}" class="text-primary">{{ username }}</a> &nbsp; &nbsp; &nbsp;</p>
     {% endif %}
                  <form class="d-flex" action="/search" method="post">
                     <input class="form-control me-2" type="search" placeholder="Search" name="search" aria-label="Search">
