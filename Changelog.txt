@@ -5,7 +5,7 @@ Changes: in V1.1.6-bugfixes (06/13/2022)
 2. Added code to prevent trying to update a Non-registered user's profile A.K.A "Annonymous"
 3. fixed so that a profile link is not shown for an Anon User
 4. Fixed Issue #44 typo in var name.
-5. Fixed Issue #46 if user profilei is  Not found show 404 to prevent AttributeError
+5. Fixed Issue #46 if user profile is  Not found show 404 to prevent AttributeError
 
 Changes: in V1.1.6 (06/12/2022)
 1. Fixed archive view ( 3 column Display) #30
