@@ -564,7 +564,16 @@ def get_post(random_id):
     # remove expired post
     prune_expired()
     post = Post()
-    post_id = post.query.filter_by(post_id=random_id).first().post_id
+    # added this to fix issue #45 - post not found
+    # if post is not found then redirect to post not found page
+    try:
+        post_id = post.query.filter_by(post_id=random_id).first().post_id
+    except AttributeError:
+        return render_template('404.html', date=datetime.now())
+    # if post id is not found then redirect to post not found page
+    if post_id == None:
+        return render_template('404.html', date=datetime.now())
+    # if post id is found then get the post
     poster = post.query.filter_by(post_id=random_id).first().poster
     # if no session then poster name = anonymous
     if poster == "":
