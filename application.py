@@ -626,10 +626,20 @@ def profile(username):
         user_name = "Anonymous"
     # get user profile
     users = Users()
+    # check if the username is valid
+    try:
+        user_id = users.query.filter_by(username=username).first().user_id
+    except AttributeError:
+        return render_template('404.html', date=datetime.now())
     # get user post
     post = Post()
     profile = Profile()
-    user_post = post.query.filter_by(poster=username).all()
+    # added this to fix issue #46 - profile not found
+    try:
+        user_post = post.query.filter_by(poster=username).all()
+    except AttributeError:
+        return render_template('404.html', date=datetime.now())
+    # if user is not found then redirect to profile not found page
     # get post dates
     post_date = post.query.with_entities(Post.post_date).all()
     # users location
