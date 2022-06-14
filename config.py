@@ -32,3 +32,14 @@ __version__ = '1.1.3'
 """
 # you can add administrator accounts here.
 admins = {'Admin1': {'password': '123'}, 'Admin2': {'password': '123'}}
+
+admin_email = ''
+
+
+''' Mail Settings'''
+# SMTP server settings
+smtp_server = 'smtp.gmail.com'
+smtp_port = 587
+smtp_tls = True
+smtp_user = ''
+smtp_password = ''

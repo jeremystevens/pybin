@@ -51,7 +51,7 @@ from jinja2 import Environment, PackageLoader, select_autoescape, environment
 from flask import Blueprint
 from flask_paginate import Pagination, get_page_parameter
 import flask_login
-
+import requests
 # Local imports
 from config import admins
 
@@ -684,9 +684,17 @@ def profile(username):
 
 
 
-# report abusive post.
+# report to site admin via email
+@app.route('/report', methods=['GET', 'POST'])
 @app.route('/report/<random_id>')
 def report_post(random_id):
+    # get admin email from config file
+    admin_email = config.get('admin_email')
+
+
+
+
+
     pass
 
 
