@@ -147,13 +147,23 @@
                 <div id="options" style="position:relative;left:0px;top:21%;width:100%;">| <a href="../raw/{{ post_id }}"
                                                                                              target="popupwindow">Raw
                     Code</a>&nbsp;
-                    <?=$bitly;?>| <a href="/download/{{ post_id }}" target="popupwindow"> Download </a> &nbsp;|
+                    <?=$bitly;?>| <a href="/download/{{ post_id }}" target="popupwindow"> Download </a> &nbsp;| <a href="/report/{{ post_id }}">Report Post</a>
                 </div>
+
                 </div>
                 <br>
+
                 <!---- Removed Social Media Links here ---->
 
-
+                     {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class=flashes>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
                 </script>
 
                 <div class="c" style="font-family: monospace;">
@@ -168,12 +178,19 @@
 
 
             <!--Recent Post go here -->
-
     </div>
 
     </div>
     <!--/base-block-->
-
+     {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class=flashes>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
     </div>
 
 </main>

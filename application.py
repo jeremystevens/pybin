@@ -54,7 +54,7 @@ import flask_login
 import requests
 # Local imports
 from config import admins
-
+import config as cfg
 mod = Blueprint('post', __name__)
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'nots0s3cr3t'
@@ -68,6 +68,8 @@ login_manager.init_app(app)
 db = SQLAlchemy(app)
 ROWS_PER_PAGE = 6
 
+
+admin_email = 'jeremiahstevens@gmail.com'
 """"
 
 # ============================================================
@@ -685,17 +687,44 @@ def profile(username):
 
 
 # report to site admin via email
-@app.route('/report', methods=['GET', 'POST'])
 @app.route('/report/<random_id>')
 def report_post(random_id):
-    # get admin email from config file
-    admin_email = config.get('admin_email')
+    if request.method == 'GET':
+        if random_id == None:
+            flash("Error: No post ID was provided.")
+            return redirect(url_for('index'))
+        else:
+            post_id = random_id
+    # get
+    # send grid email
+    url = "https://rapidprod-sendgrid-v1.p.rapidapi.com/mail/send"
 
-
-
-
-
-    pass
+    payload = {
+        "personalizations": [
+            {
+                "to": [{"email": admin_email}],
+                "subject": "Reported Post"
+            }
+        ],
+        "from": {"email": "pybinbot@gmail.com"},
+        "content": [
+            {
+                "type": "text/plain",
+                "value": random_id
+            }
+        ]
+    }
+    headers = {
+        "content-type": "application/json",
+        "X-RapidAPI-Key": "d8f8f8f8f8msh8f8f8f8f8f8f8f8f8f8f8f8f",
+        "X-RapidAPI-Host": "rapidprod-sendgrid-v1.p.rapidapi.com"
+    }
+    response = requests.request("POST", url, json=payload, headers=headers)
+    # flash success message
+    flash("Thank you for reporting this post. We will review it and take appropriate action.")
+    # return to get_post page
+    return redirect(url_for('get_post', random_id=random_id))
+    # return index page
 
 
 # route to handle 404

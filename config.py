@@ -36,7 +36,7 @@ admins = {'Admin1': {'password': '123'}, 'Admin2': {'password': '123'}}
 admin_email = ''
 
 
-''' Mail Settings'''
+''' Mail SMTP Settings for Admin Panel '''
 # SMTP server settings
 smtp_server = 'smtp.gmail.com'
 smtp_port = 587
