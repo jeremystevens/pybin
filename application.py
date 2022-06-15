@@ -19,7 +19,7 @@
 # LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-__version__ = '1.1.6-HotFix' # current version
+__version__ = '1.1.7' # current version
 
 # ============================================================
 """ application.py: - the main pybin flask server """
@@ -68,8 +68,10 @@ login_manager.init_app(app)
 db = SQLAlchemy(app)
 ROWS_PER_PAGE = 6
 
+"""" Admin Settings """
 
 admin_email = 'jeremiahstevens@gmail.com'
+rapid_apikey = ""
 """"
 
 # ============================================================
@@ -716,7 +718,7 @@ def report_post(random_id):
     }
     headers = {
         "content-type": "application/json",
-        "X-RapidAPI-Key": "d8f8f8f8f8msh8f8f8f8f8f8f8f8f8f8f8f8f",
+        "X-RapidAPI-Key": rapid_apikey,
         "X-RapidAPI-Host": "rapidprod-sendgrid-v1.p.rapidapi.com"
     }
     response = requests.request("POST", url, json=payload, headers=headers)

@@ -22,7 +22,7 @@
 # LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-__version__ = '1.1.3'
+__version__ = '1.1.7'
 
 # ============================================================
 # Configuration for Admin Panel
@@ -32,8 +32,6 @@ __version__ = '1.1.3'
 """
 # you can add administrator accounts here.
 admins = {'Admin1': {'password': '123'}, 'Admin2': {'password': '123'}}
-
-admin_email = ''
 
 
 ''' Mail SMTP Settings for Admin Panel '''
