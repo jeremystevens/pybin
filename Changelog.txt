@@ -1,7 +1,7 @@
 Development Changelog:
 
 Changes: to Master (06/14/22):
-1. Added API for sendgrid to send reported Post to Adminstrator
+1. Added API for sendgrid to send reported Post to Administrator
 2. Closed #16 Added Report Post back to view.html
 
 Changes: in V1.1.6-bugfixes (06/13/2022)
