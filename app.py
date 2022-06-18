@@ -65,7 +65,12 @@ from models.main import db
 from models.posts import Post
 from models.users import Users
 from models.profile import Profile
-from views import (main_views, posting_views, post_views, view_all_views
+from views import (main_views,
+                   posting_views,
+                   post_views,
+                   view_all_views,
+                   user_login_views, user_registration_views,
+    # user_register_views,
                    )
 
 ''''
@@ -142,6 +147,8 @@ app.register_blueprint(posting_views.bp)
 app.register_blueprint(post_views.bp)
 # view all post in archive blueprints
 app.register_blueprint(view_all_views.bp)
+app.register_blueprint(user_login_views.bp)
+app.register_blueprint(user_registration_views.bp)
 
 ''' ERROR HANDLERS '''
 

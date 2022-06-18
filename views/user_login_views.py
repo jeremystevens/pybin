@@ -23,42 +23,53 @@ __version__ = '2.0.0'  # current version
 __author__ = 'Jeremy Stevens'  # author
 
 # ============================================================
-""" Post.py -  view all post in archive """
+""" user_login_views.py -  user Login system """
 # ============================================================
 
+''' Import modules '''
+import flask
+import flask_login
+from werkzeug.security import check_password_hash
 from flask import Blueprint, url_for, redirect, current_app, session, render_template, request
 from utils.prepare import convert_size, generate_random_id, exp_datetime, utf8len
 import datetime
 from datetime import datetime
+
+# import the models for this view
 from models.main import db
-from models.posts import Post
 from models.users import Users
 from models.profile import Profile
-from views.prune_post_views import prune_expired
+
+bp = Blueprint("user_login_views", __name__, url_prefix="/")
 
 
-bp = Blueprint("view_all_views", __name__, url_prefix="/")
-
-ROWS_PER_PAGE = 6
-# view all public posts
-@bp.route('/view/')
-def view_all():
-    # get session
-    if 'user_name' in session:
-        user_name = session['user_name']
-    else:
-        user_name = "Anonymous"
-    search = False
-    q = request.args.get('q')
-    if q:
-        search = True
-    page = request.args.get('page', 1, type=int)
-    # remove expired post
-    prune_expired()
-    user = "none"
-    post = Post()
-    dates = post.query.with_entities(Post.post_date).all()
-    # filer out unlisted post
-    total_post = post.query.filter_by(exposure="public").paginate(page=page, per_page=ROWS_PER_PAGE)
-    public_post = post.query.filter_by(exposure="public").all()
-    return render_template('posts.html', date=datetime.now(), posts=total_post, username=user_name)
+@bp.route('/login', methods=['GET', 'POST'])
+def user_login():
+    if flask.request.method == 'GET':
+        return render_template('login.html')
+    username = flask.request.form['username']
+    password = flask.request.form['password']
+    # check if username is in user db
+    # check username and check_password_hash
+    if not Users.query.filter_by(username=username).first():
+        flask.flash('incorrect username')
+        return render_template('login.html')
+    # check if password is correct
+    if not check_password_hash(Users.query.filter_by(username=username).first().password, password):
+        flask.flash('incorrect password')
+        return render_template('login.html')
+    # create user object
+    users = Users()
+    users.id = username
+    # set user to authenticated user
+    # login user
+    flask_login.login_user(users)
+    # flash message
+    flask.flash('Logged in')
+    session['user_name'] = username
+    current_user = users.id
+    # update the last login column
+    db.session.query(Profile).filter(Profile.username == username).update({"last_login": datetime.now()})
+    db.session.commit()
+    db.session.close_all()
+    return redirect(url_for('main.index'))

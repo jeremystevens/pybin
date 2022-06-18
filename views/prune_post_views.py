@@ -46,7 +46,7 @@ def prune_expired():
             # post date + post_id new line after
             date = str(datetime.now())
             del_post = "Deleted on: " + date + " " + post_id + "\n"
-            with open('deleted.txt', 'a') as output:
+            with open('deleted.log', 'a') as output:
                 output.write(del_post)
             post.query.filter_by(expiration=p_date).delete()
             db.session.commit()

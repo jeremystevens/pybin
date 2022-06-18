@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+{% extends"base.html" %}
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" type="text/css" href="/static/css/prism.css">
-    <script src="/static/js/prism.js"></script>
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sticky-footer-navbar/">
      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -62,15 +58,74 @@
     <link rel="stylesheet" type="text/css" href="/static/css/prism.css">
     <script src="/static/js/prism.js"></script>
 </head>
-<body>
-{% block body %}
-{% include 'navbar.html' %}
- {% block content %}
+</div>
+{% block content %}
+    <main class="flex-shrink-0">
+    <div class="container">
+        <div class="span8">
+        </div>
 
+        <!----div class="base-block">
+
+
+
+
+
+
+
+                <--Recent Post go here -->
+
+
+        <!----live post here--->
+
+
+        <!--/base-block-->
+
+
+    </div>
+<div class="span8">
+
+         <div class="row">">
+
+
+            <center>
+                <div class="col-sm">
+                <div class="title"> <!---- Title goes here ---->
+                </div>
+               <div class="login-form">
+    <form action='/login' method='POST'>
+        <h2 class="text-center">Log in</h2>
+        <div class="form-group">
+           <input type='text' class="form-control" name='username' id='username' placeholder='username'/>
+        </div>
+        <div class="form-group">
+           <input type='password' class="form-control" name='password' id='password' placeholder='password'/>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-block">Log in</button>
+        </div>
+        <div class="clearfix">
+            <label class="float-left form-check-label"><input type="checkbox" name="rememberme"> Remember me</label>
+            <a href="#" class="float-right">Forgot Password?</a>
+        </div>
+    </form>
+    <p class="text-center"><a href="/register">Create an Account</a></p>
+</div>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class=flashes>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+</div>
 {% endblock %}
-{% endblock %}
-{% block footer %}
-{% include 'footer.html' %}
-{% endblock %}
-</body>
-</html>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
