@@ -1,0 +1,365 @@
+{% extends "base.html" %}
+{% block content %}
+<!-- Begin page content -->
+<main class="flex-shrink-0">
+    <div class="container">
+        <div class="span8">
+
+
+            <!--Here-->
+
+            <form action="/submit" method="post">
+                <div class="base-block">
+                    <div class="title">Add a new paste</div>
+                    <div id="container">
+                        <div class="form-group">
+                            <label for="exampleFormControlTextarea1"></label>
+                            <textarea class="form-control" id="paste_text" name="paste_text" rows="8"></textarea>
+                        </div>
+
+                        <div id="textCopy"/>
+                    </div>
+
+
+                    <div class="row-fluid">
+                        <div class="base-block span6">
+                            <div class="title">Paste Settings</div>
+                            <h4>Syntax</h4>
+
+                            <p>
+                                <select name="paste_syntax" id="select1" class="uniform" data-placement="right"
+                                        rel="tooltip" data-original-title="Select your language">
+                                    <!--Updated in Dev-0.9  Added 292 Languages supported by Prizm-->
+                                    <option value="abap">ABAP</option>
+                                    <option value="abnf">ABNF</option>
+                                    <option value="actionscript">ActionScript</option>
+                                    <option value="ada">Ada</option>
+                                    <option value="al">Al</option>
+                                    <option value="antlr4">antlr4</option>
+                                    <option value="apacheconf">ApacheConf</option>
+                                    <option value="apex">Apex</option>
+                                    <option value="apl">Apl</option>
+                                    <option value="applescript">AppleScript</option>
+                                    <option value="aql">Aql</option>
+                                    <option value="arduino">Arduino</option>
+                                    <option value="arff">Arff</option>
+                                    <option value="armasm">ARM Assembly</option>
+                                    <option value="arturo">Arturo</option>
+                                    <option value="asciidoc">Asciidoc</option>
+                                    <option value="adoc">AsciiDoc(adoc)</option>
+                                    <option value="aspnet">ASP.NET</option>
+                                    <option value="asm6502">6502 Assembly</option>
+                                    <option value="asmatmel">Atmel AVR Assembly</option>
+                                    <option value="autohotkey">AutoHotkey</option>
+                                    <option value="autoit">AutoIt</option>
+                                    <option value="avisynth">AviSynth</option>
+                                    <option value="avro-idl">Avro IDL</option>
+                                    <option value="awk">Awk</option>
+                                    <option value="bash">Bash</option>
+                                    <option value="shell">Bash(shell)</option>
+                                    <option value="basic">Basic</option>
+                                    <option value="batch">Batch</option>
+                                    <option value="bbcode">BBCode</option>
+                                    <option value="bicep">Bicep</option>
+                                    <option value="birb">Birb</option>
+                                    <option value="bison">Bison</option>
+                                    <option value="bnf">BNF</option>
+                                    <option value="brainfuck">Brainfuck</option>
+                                    <option value="brightscript">Brightscript</option>
+                                    <option value="bro">Bro</option>
+                                    <option value="bsl">BSL</option>
+                                    <option value="c">C</option>
+                                    <option value="csharp">Csharp</option>
+                                    <option value="cpp">C++</option>
+                                    <option value="cfscript">Cfscript</option>
+                                    <option value="chaiscript">Chaiscript</option>
+                                    <option value="cil">CIL</option>
+                                    <option value="clojure">Clojure</option>
+                                    <option value="cmake">Cmake</option>
+                                    <option value="cobol">Cobol</option>
+                                    <option value="coffeescript">CoffeeScript</option>
+                                    <option value="concurnas">Concurnas</option>
+                                    <option value="csp">Content-Security-Policy</option>
+                                    <option value="css">CSS</option>
+                                    <option value="cooklang">Cooklang</option>
+                                    <option value="coq">Coq</option>
+                                    <option value="crystal">Crystal</option>
+                                    <option value="csv">CSV</option>
+                                    <option value="cue">CUE</option>
+                                    <option value="cypher">Cypher</option>
+                                    <option value="d">D</option>
+                                    <option value="clike">Dart</option>
+                                    <option value="dataweave">Dataweave</option>
+                                    <option value="dax">DAX</option>
+                                    <option value="dhall">Dhall</option>
+                                    <option value="diff">Diff</option>
+                                    <option value="django">Django/jinja2</option>
+                                    <option value="dns-zone-file">DNS Zone File</option>
+                                    <option value="docker">Docker</option>
+                                    <option value="dot">DOT (Graphviz)</option>
+                                    <option value="ebnf">EBNF</option>
+                                    <option value="editorconfig">EditorConfig</option>
+                                    <option value="eiffel">Eiffel</option>
+                                    <option value="ejs">EJS</option>
+                                    <option value="elixir">Elixir</option>
+                                    <option value="elm">Elm</option>
+                                    <option value="etlua">Embedded Lua templating</option>
+                                    <option value="erb">ERB</option>
+                                    <option value="erlang">Erlang</option>
+                                    <option value="excel-formula">Excel Formula(xlsx)</option>
+                                    <option value="fsharp">F#</option>
+                                    <option value="factor">Factor</option>
+                                    <option value="false">False</option>
+                                    <option value="firestore-security-rules">Firestore security rules</option>
+                                    <option value="flow">Flow</option>
+                                    <option value="fortran">Fortran</option>
+                                    <option value="ftl">FreeMarker Template Language</option>
+                                    <option value="gml">GameMaker Language</option>
+                                    <option value="gap">Gap(CAS)</option>
+                                    <option value="gcode">G-Code</option>
+                                    <option value="gdscript">GDScript</option>
+                                    <option value="gedcom">GEDCOM</option>
+                                    <option value="gettext">Gettext</option>
+                                    <option value="gherkin">Gherkin</option>
+                                    <option value="git">Git</option>
+                                    <option value="glsl">GLSL</option>
+                                    <option value="gn">GN</option>
+                                    <option value="linker-script">Gnu Linker Script</option>
+                                    <option value="go">Go</option>
+                                    <option value="go-module">Go Module</option>
+                                    <option value="gradle">Gradle</option>
+                                    <option value="graphql">GraphQL</option>
+                                    <option value="groovy">Groovy</option>
+                                    <option value="haml">Haml</option>
+                                    <option value="handlebars">Handlebars</option>
+                                    <option value="haskell">Haskell</option>
+                                    <option value="haxe">Haxe</option>
+                                    <option value="hcl">HCL</option>
+                                    <option value="hlsl">HLSL</option>
+                                    <option value="hoon">Hoon</option>
+                                    <option value="html">HTML</option>
+                                    <option value="http">HTTP</option>
+                                    <option value="hpkp">HTTP Public-Key-Pins</option>
+                                    <option value="hsts">HTTP Strict-Transport-Security</option>
+                                    <option value="ichigojam">IchigoJam</option>
+                                    <option value="icon">Icon</option>
+                                    <option value="icu-message-format">ICU Message Format</option>
+                                    <option value="idris">Idris</option>
+                                    <option value="ignore">.Ignore</option>
+                                    <option value="inform7">Inform 7</option>
+                                    <option value="ini">INI</option>
+                                    <option value="io">Io</option>
+                                    <option value="j">J</option>
+                                    <option value="java">Java</option>
+                                    <option value="javadoc">JavaDoc</option>
+                                    <option value="javadoclike">JavaDoc-like</option>
+                                    <option value="javastacktrace">Java stack trace</option>
+                                    <option value="jexl">JEXL</option>
+                                    <option value="jolie">Jolie</option>
+                                    <option value="jq">JQ</option>
+                                    <option value="jsdoc">JSDoc</option>
+                                    <option value="js-extras">JS-Extras</option>
+                                    <option value="json">JSON</option>
+                                    <option value="json5">JSON5</option>
+                                    <option value="jsonp">JSONP</option>
+                                    <option value="jsstacktrace">JS stack trace</option>
+                                    <option value="js-templates">JS Templates</option>
+                                    <option value="julia">Julia</option>
+                                    <option value="keepalived">Keepalived Configure</option>
+                                    <option value="keyman">Keyman</option>
+                                    <option value="kotlin">Kotlin</option>
+                                    <option value="kumir">Kumir</option>
+                                    <option value="kusto">Kusto</option>
+                                    <option value="latex">LaTeX</option>
+                                    <option value="latte">Latte</option>
+                                    <option value="less">LESS</option>
+                                    <option value="lilypond">LilyPond</option>
+                                    <option value="liquid">Liquid</option>
+                                    <option value="lisp">Lisp</option>
+                                    <option value="livescript">LiveScript</option>
+                                    <option value="llvm">LLVM</option>
+                                    <option value="log">Log</option>
+                                    <option value="lolcode">LOLCODE</option>
+                                    <option value="lua">Lua</option>
+                                    <option value="magma">Magma</option>
+                                    <option value="makefile">Makefile</option>
+                                    <option value="markdown">Markdown</option>
+                                    <option value="markup-templating">Markup templating</option>
+                                    <option value="mata">Mata</option>
+                                    <option value="matlab">MATLAB</option>
+                                    <option value="maxscript">MAXScript</option>
+                                    <option value="mel">MEL</option>
+                                    <option value="mermaid">Mermaid</option>
+                                    <option value="mizar">Mizar</option>
+                                    <option value="mongodb">MongoDB</option>
+                                    <option value="monkey">Monkey</option>
+                                    <option value="moonscript">MoonScript</option>
+                                    <option value="n1ql">N1QL</option>
+                                    <option value="n4js">N4JS</option>
+                                    <option value="nand2tetris-hdl">Nand To Tetris HDL</option>
+                                    <option value="naniscript">Naniscript</option>
+                                    <option value="nasm">NASM</option>
+                                    <option value="neon">NEON</option>
+                                    <option value="nevod">Nevod</option>
+                                    <option value="nginx">Nginx</option>
+                                    <option value="nim">Nim</option>
+                                    <option value="nix">Nix</option>
+                                    <option value="nsis">NSIS</option>
+                                    <option value="objectivec">Objective-C</option>
+                                    <option value="ocaml">OCaml</option>
+                                    <option value="odin">Odin</option>
+                                    <option value="opencl">OpenCL</option>
+                                    <option value="openqasm">OpenQASM</option>
+                                    <option value="oz">Oz</option>
+                                    <option value="parigp">PARI/GP</option>
+                                    <option value="parser">Parser</option>
+                                    <option value="pascal">Pascal</option>
+                                    <option value="pascaligo">Pascaligo</option>
+                                    <option value="psl">PATROL Scripting Language</option>
+                                    <option value="pcaxis">PC-Axis</option>
+                                    <option value="peoplecode">PeopleCode</option>
+                                    <option value="perl">Perl</option>
+                                    <option value="php">PHP</option>
+                                    <option value="phpdoc">PHPDoc</option>
+                                    <option value="php-extras">PHP Extras</option>
+                                    <option value="plant-uml">Plant UML</option>
+                                    <option value="plsql">PL/SQL</option>
+                                    <option value="powerquery">Power Query</option>
+                                    <option value="powershell">PowerShell</option>
+                                    <option value="processing">Processing</option>
+                                    <option value="prolog">Prolog</option>
+                                    <option value="promql">PromQL</option>
+                                    <option value="properties">Properties</option>
+                                    <option value="protobuf">Protocol Buffers</option>
+                                    <option value="pug">Pug</option>
+                                    <option value="puppet">Puppet</option>
+                                    <option value="pure">Pure</option>
+                                    <option value="purebasic">PureBasic</option>
+                                    <option value="purescript">PureScript</option>
+                                    <option value="python">Python</option>
+                                    <option value="qsharp">Q#</option>
+                                    <option value="q">Q (kdb+ database)</option>
+                                    <option value="qml">QML</option>
+                                    <option value="qore">Qore</option>
+                                    <option value="r">R</option>
+                                    <option value="racket">Racket</option>
+                                    <option value="cshtml">Razor</option>
+                                    <option value="jsx">React JSX </option>
+                                    <option value="tsx">React TSX</option>
+                                    <option value="reason">Reason</option>
+                                    <option value="regex">Regex</option>
+                                    <option value="rego">ReGo</option>
+                                    <option value="renpy">Ren'Py</option>
+                                    <option value="rescript">Rescript</option>
+                                    <option value="rest">reST</option>
+                                    <option value="rip">Rip</option>
+                                    <option value="roboconf">Roboconf</option>
+                                    <option value="robotframework">Robot Framework</option>
+                                    <option value="ruby">Ruby</option>
+                                    <option value="rust">Rust</option>
+                                    <option value="sas">SAS</option>
+                                    <option value="sass">SASS (Sass)</option>
+                                    <option value="scss">SCSS</option>
+                                    <option value="scala">Scala</option>
+                                    <option value="scheme">Scheme</option>
+                                    <option value="shell-session">Shell Session</option>
+                                    <option value="smali">Smali</option>
+                                    <option value="smalltalk">Smalltalk</option>
+                                    <option value="smarty">Smarty</option>
+                                    <option value="sml">SML</option>
+                                    <option value="solidity">Solidity (Ethereum)</option>
+                                    <option value="solution-file">Solution File</option>
+                                    <option value="soy">Soy (Closure Template)</option>
+                                    <option value="sparql">SPARQL</option>
+                                    <option value="splunk-spl">Splunk SPL</option>
+                                    <option value="sqf">SQF: Status Quo Function</option>
+                                    <option value="sql">SQL</option>
+                                    <option value="squirrel">Squirrel</option>
+                                    <option value="stan">Stan</option>
+                                    <option value="stata">Stata</option>
+                                    <option value="iecst">Structured Text (IEC 61131-3)</option>
+                                    <option value="stylus">Stylus</option>
+                                    <option value="supercollider">SuperCollider</option>
+                                    <option value="swift">Swift</option>
+                                    <option value="systemd">Systemd</option>
+                                    <option value="t4-templating">T4 Template</option>
+                                    <option value="t4-cs">T4 Text Templates (C#)</option>
+                                    <option value="t4-vb">T4 Text Templates (VB)</option>
+                                    <option value="tap">TAP</option>
+                                    <option value="tcl">Tcl</option>
+                                    <option value="tt2">Template Toolkit 2</option>
+                                    <option value="text">Text</option>
+                                    <option value="textile">Textile</option>
+                                    <option value="toml">TOML</option>
+                                    <option value="tremor">Tremor</option>
+                                    <option value="turtle">Turtle</option>
+                                    <option value="twig">Twig</option>
+                                    <option value="typescript">TypeScript</option>
+                                    <option value="typoscript">TypoScript</option>
+                                    <option value="unrealscript">UnrealScript</option>
+                                    <option value="uorazor">UO Razor Script</option>
+                                    <option value="uri">URI</option>
+                                    <option value="url">URL</option>
+                                    <option value="v">V</option>
+                                    <option value="vala">Vala</option>
+                                    <option value="vbnet">VB.Net</option>
+                                    <option value="velocity">Velocity</option>
+                                    <option value="verilog">Verilog</option>
+                                    <option value="vhdl">VHDL</option>
+                                    <option value="vim">vim</option>
+                                    <option value="visual-basic">Visual Basic</option>
+                                    <option value="warpscript">WarpScript</option>
+                                    <option value="wasm">WebAssembly</option>
+                                    <option value="web-idl">Web IDL</option>
+                                    <option value="wgsl">WGSL</option>
+                                    <option value="wiki">Wiki markup</option>
+                                    <option value="wolfram">Wolfram</option>
+                                    <option value="wren">Wren</option>
+                                    <option value="xeora">Xeora</option>
+                                    <option value="xml-doc">XML (DocBook)</option>
+                                    <option value="xojo">Xojo (REALbasic)</option>
+                                    <option value="xquery">XQuery</option>
+                                    <option value="yaml">YAML</option>
+                                    <option value="yang">YANG</option>
+                                    <option value="zig">Zig</option>
+                                </select>
+                            </p>
+                            <h4>Expiration</h4>
+
+                            <p>
+                                <select name="paste_exp" class="uniform" data-placement="right" rel="tooltip"
+                                        data-original-title="Select the life of your paste">
+                                    <option value="0">Never</option>
+                                    <option value="1">10 Minutes</option>
+                                    <option value="2">1 Hour</option>
+                                    <option value="3">1 Day</option>
+                                    <option value="4">1 Month</option>
+                                </select>
+                            </p>
+                            <h4>Exposure</h4>
+
+                            <p>
+                                <select name="exposure" class="uniform" data-placement="right" rel="tooltip"
+                                        data-original-title="Set your paste private or public">
+                                    <option value="public">Public</option>
+                                    <option value="unlisted">Unlisted</option>
+                                </select>
+                            </p>
+                            <div class="title">Paste Settings</div>
+
+                            <h4>Paste Name:</h4>
+                            <p>
+                                <input data-placement="right" rel="tooltip" data-original-title="Paste Name"
+                                       name="paste_title" type="text" value="" class="st-forminput"/><br/>
+                            </p>
+                            <input type="submit" name="" value="Submit" class="btn btn-primary"/>
+                            </p>
+                        </div>
+                    </div>
+                    <!--/span-->
+            </form>
+        </div>
+
+    </div>
+    </div>
+{% endblock %}

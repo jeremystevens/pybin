@@ -1,0 +1,121 @@
+{% extends"base.html" %}
+<!-- Prism -->
+
+{% block content %}
+ <!-- Begin page content -->
+<main class="flex-shrink-0">
+    <div class="container">
+        <div class="span8">
+        </div>
+
+        <!----div class="base-block">
+
+
+
+
+
+
+
+                <--Recent Post go here -->
+
+
+        <!----live post here--->
+
+
+        <!--/base-block-->
+
+
+    </div>
+
+
+    <div class="span8">
+
+         <div class="row">">
+
+
+            <center>
+                <div class="col-sm">
+                <div class="title"> <!---- Title goes here ---->
+                </div>
+
+                    <!---img src="/static/img/Icon.png" height=50 width=50-->
+
+                    &nbsp;&nbsp;<img src="/static/img/notepad.png" height=50 width=50>
+
+                    <i><h3></h><b>
+                        {{ post_title }}
+                    </b></h3></i>
+
+                    <!--posted code goes here-->
+                    <pre class="line-numbers"> {{ post_text }} <code class="language-{{ post_syntax }}">
+
+                  </code></pre>
+
+                    <br>
+                    #{{ post_id }} |
+                    By:
+                    {% if poster != "Anonymous"%}
+                     <A href="../profile/{{poster}}">{{ poster }}</a> on
+                    {% else %}
+                    {{ poster }} on
+                    {% endif %}
+                    {{ post_date }} | Syntax: <a href="../s/{{ post_syntax }}">
+                    {{ post_syntax }}
+                </a> | Size:
+                {{ post_size }} |
+
+                Views:
+                {{ post_hits }} | Expires:
+                {{ post_expire }} | <Br>
+
+                <div id="options" style="position:relative;left:0px;top:21%;width:100%;">| <a href="../raw/{{ post_id }}"
+                                                                                             target="popupwindow">Raw
+                    Code</a>&nbsp;
+                    <?=$bitly;?>| <a href="/download/{{ post_id }}" target="popupwindow"> Download </a> &nbsp;| <a href="/report/{{ post_id }}">Report Post</a>
+                </div>
+
+                </div>
+                <br>
+
+                <!---- Removed Social Media Links here ---->
+
+                     {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class=flashes>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+                </script>
+
+                <div class="c" style="font-family: monospace;">
+                    </SPAN>
+
+                </div>
+
+            </center>
+        </div>
+
+    </div>
+
+
+            <!--Recent Post go here -->
+    </div>
+
+    </div>
+    <!--/base-block-->
+     {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class=flashes>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+    </div>
+
+</main>
+{% endblock %}

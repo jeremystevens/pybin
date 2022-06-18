@@ -1,0 +1,78 @@
+{% extends"base.html" %}
+{% block content %}
+<!-- Begin page content -->
+<main class="flex-shrink-0">
+    <div class="container">
+
+
+        <!--Here-->
+
+        <div class="base-block">
+            <div class="title">Public Pastes</div>
+
+            <img src="/static/img/code.png" height="100" width="100">&nbsp;<font size="5">Code Archive</font>
+            <div class="table-responsive">
+                <Br><Br>
+                <table width="100%" Height="" id="archvie" border="0" class="table table-sm table-dark">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Name / Title</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Syntax</th>
+                    </tr>
+                    </thead>
+                    {% for post in posts.items %}
+                    <tbody>
+                    <tr class="table-light">
+                        <th scope="row"><a href="../p/{{ post.post_id }}">{{ post.post_title }}</a></th>
+                        <td>{{ post.post_date }}</td>
+                        <td>{{ post.post_syntax }}</td>
+                        {% endfor %}
+                    </tr>
+                    </tbody>
+
+                </table>
+                <!-- Pagination Links-->
+                <br>
+                <div class="text-right">
+                    <a href="{{ url_for('view_all_views.view_all', page=posts.prev_num) }}"
+                       class="btn btn-outline-dark
+       {% if posts.page == 1 %}disabled{% endif %}">
+                        &laquo;
+                    </a>
+                    <!-- Loop through the number of pages to display a link for each-->
+                    {% for page_num in posts.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+                    {% if page_num %}
+                    <!-- Check for the active page and set the link to "Active"-->
+                    {% if posts.page == page_num %}
+                    <a href="{{ url_for('view_all', page=page_num) }}"
+                       class="btn btn-dark">
+                        {{ page_num }}
+                    </a>
+                    {% else %}
+                    <a href="{{ url_for('view_all', page=page_num) }}"
+                       class="btn btn-outline-dark">
+                        {{ page_num }}
+                    </a>
+                    {% endif %}
+                    {% else %}
+                    ...
+                    {% endif %}
+                    {% endfor %}
+                    <a href="{{ url_for('view_all_views.view_all', page=posts.next_num) }}"
+                       class="btn btn-outline-dark
+       {% if posts.page == posts.pages %}disabled{% endif %}">
+                        &raquo;
+                    </a>
+                </div>
+                <p class="text-right mt-3">
+                    Showing page {{ posts.page }} of {{ posts.pages }}
+                </p>
+            </div>
+
+        </div>
+
+        <!--/base-block-->
+
+
+{% endblock %}

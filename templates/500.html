@@ -1,0 +1,701 @@
+<!doctype html>
+<html lang="en" class="h-100">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.84.0">
+    <title>PyBin</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sticky-footer-navbar/">
+
+
+    <!-- Bootstrap core CSS -->
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/css/style.css" rel="stylesheet">
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+    </script>
+    <script>
+        (function ($) {
+  $(function () {
+    $().ready(function () {
+      (function () {
+        var requestAnimationFrame =
+          window.requestAnimationFrame ||
+          window.mozRequestAnimationFrame ||
+          window.webkitRequestAnimationFrame ||
+          window.msRequestAnimationFrame;
+        window.requestAnimationFrame = requestAnimationFrame;
+      })();
+      var canvas = document.getElementById("canvas-404");
+      if (canvas === null) return;
+      setTimeout(function () {
+        $(".js-toaster_lever").delay(200).animate({ top: 30 }, 100);
+        $(".js-toaster_toast")
+          .removeClass("js-ag-hide")
+          .addClass("js-ag-animated js-ag-bounce-in-up");
+      }, 800);
+      var ctx = canvas.getContext("2d"),
+        loading = true;
+
+      canvas.height = 210;
+      canvas.width = 300;
+
+      var parts = [],
+        minSpawnTime = 100,
+        lastTime = new Date().getTime(),
+        maxLifeTime = Math.min(6000, (canvas.height / (1.5 * 60)) * 1000),
+        emitterX = canvas.width / 2 - 50,
+        emitterY = canvas.height - 10,
+        smokeImage = new Image();
+
+      function spawn() {
+        if (new Date().getTime() > lastTime + minSpawnTime) {
+          lastTime = new Date().getTime();
+          parts.push(new smoke(emitterX, emitterY));
+        }
+      }
+      function render() {
+        if (loading) {
+          load();
+          return false;
+        }
+        var len = parts.length;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        while (len--)
+          if (parts[len].y < 0 || parts[len].lifeTime > maxLifeTime) {
+            parts.splice(len, 1);
+          } else {
+            parts[len].update();
+            ctx.save();
+            var offsetX = -parts[len].size / 2,
+              offsetY = -parts[len].size / 2;
+            ctx.translate(parts[len].x - offsetX, parts[len].y - offsetY);
+            ctx.rotate((parts[len].angle / 180) * Math.PI);
+            ctx.globalAlpha = parts[len].alpha;
+            ctx.drawImage(
+              smokeImage,
+              offsetX,
+              offsetY,
+              parts[len].size,
+              parts[len].size
+            );
+            ctx.restore();
+          }
+        spawn();
+        requestAnimationFrame(render);
+      }
+      function smoke(x, y, index) {
+        this.x = x;
+        this.y = y;
+        this.size = 1;
+        this.startSize = 60;
+        this.endSize = 69;
+        this.angle = Math.random() * 359;
+        this.startLife = new Date().getTime();
+        this.lifeTime = 0;
+        this.velY = -1 - Math.random() * 0.5;
+        this.velX = Math.floor(Math.random() * -6 + 3) / 10;
+      }
+      smoke.prototype.update = function () {
+        this.lifeTime = new Date().getTime() - this.startLife;
+        this.angle += 0.2;
+        var lifePerc = (this.lifeTime / maxLifeTime) * 100;
+        this.size =
+          this.startSize + (this.endSize - this.startSize) * lifePerc * 0.1;
+        this.alpha = 1 - lifePerc * 0.01;
+        this.alpha = Math.max(this.alpha, 0);
+        this.x += this.velX;
+        this.y += this.velY;
+      };
+      smokeImage.src = document.getElementsByTagName("img")[0].src;
+      smokeImage.onload = function () {
+        loading = false;
+      };
+      function load() {
+        if (loading) {
+          setTimeout(load, 3000);
+        } else {
+          render();
+        }
+      }
+
+      render();
+    });
+  });
+})(jQuery);
+    </script>
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    .ag-format-container {
+  width: 1142px;
+  margin: 0 auto;
+}
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  color: #541bc1;
+  font-size: 18px;
+  font-family: "Nunito", sans-serif;
+  font-weight: 700;
+}
+
+body::after {
+  content: "";
+  background: url('https://ae01.alicdn.com/kf/HTB1I_FvOXXXXXXCaFXXq6xXFXXX7/Fuga-de-Rick-e-Morty-Hot-Anima-o-Dos-Desenhos-Animados-Poster-Retro-Do-Vintage-Da.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  opacity: 0.4;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;
+}
+
+.svgcontainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
+}
+
+.topconvo {
+  font-size: 35px;
+}
+.topconvo span{
+  color: #a71dbf;
+}
+.bottomconvo{
+    padding-top: 15px;
+}
+
+.subcont {
+  width: 100%;
+  text-align: center;
+  height: 80vh;
+}
+
+.svgcontainer svg#fourohfour {
+  max-height: 320px;
+  height: 21vw;
+  min-height: 170px;
+}
+
+.svgcontainer svg#fourohfour g#tops path#leftfourtop {
+  transform-origin: center;
+  -webkit-animation: loboff1 4s 1s forwards;
+  animation: loboff1 4s 1s forwards;
+}
+
+.svgcontainer svg#fourohfour g#tops path#zerotop_3_.picklericked {
+  transform-origin: center;
+  -webkit-animation: loboff2 4s 1s forwards;
+  animation: loboff2 4s 1s forwards;
+}
+
+.svgcontainer svg#fourohfour g#tops path#rightfourtop.picklericked {
+  transform-origin: center;
+  -webkit-animation: loboff3 4s 1s forwards;
+  animation: loboff3 4s 1s forwards;
+}
+
+.svgcontainer svg#fourohfour .st0 {
+  fill: #a71dbf;
+}
+
+.svgcontainer svg#fourohfour .st1 {
+  fill: #541bc1;
+}
+
+.svgcontainer svg#fourohfour .st2 {
+  fill: #f0a9ff;
+}
+
+.backgroundfun {
+  position: absolute;
+  min-height: 100%;
+}
+
+.backgroundfun svg#rnmbg .st0 {
+  fill: #3f271a;
+}
+
+.backgroundfun svg#rnmbg .st1 {
+  fill: #e9ce33;
+}
+
+.backgroundfun svg#rnmbg .st2 {
+  fill: #834d21;
+}
+
+.backgroundfun svg#rnmbg .st3 {
+  fill: #eacb36;
+}
+
+.backgroundfun svg#rnmbg .st4 {
+  fill: #d28b3a;
+}
+
+.backgroundfun svg#rnmbg .st5 {
+  fill: #84a841;
+}
+
+.backgroundfun svg#rnmbg .st6 {
+  fill: #ca7f3f;
+}
+
+.backgroundfun svg#rnmbg .st7 {
+  fill: #e7ab43;
+}
+
+.backgroundfun svg#rnmbg .st8 {
+  fill: #ebc22d;
+}
+
+.backgroundfun svg#rnmbg .st9 {
+  fill: #b5c04c;
+}
+
+.backgroundfun svg#rnmbg .st10 {
+  fill: #ddb92d;
+}
+
+.backgroundfun svg#rnmbg .st11 {
+  fill: #e9c194;
+}
+
+.backgroundfun svg#rnmbg .st12 {
+  fill: #e3aa86;
+}
+
+.backgroundfun svg#rnmbg .st13 {
+  fill: #98702d;
+}
+
+.backgroundfun svg#rnmbg .st14 {
+  fill: #95b023;
+}
+
+.backgroundfun svg#rnmbg .st15 {
+  fill: #e2a175;
+}
+
+.backgroundfun svg#rnmbg .st16 {
+  fill: #c8672e;
+}
+
+.backgroundfun svg#rnmbg .st17 {
+  fill: #c06b73;
+}
+
+.backgroundfun svg#rnmbg .st18 {
+  fill: #728b47;
+}
+
+.backgroundfun svg#rnmbg .st19 {
+  fill: #da7d3d;
+}
+
+.backgroundfun svg#rnmbg .st20 {
+  fill: #db9345;
+}
+
+.backgroundfun svg#rnmbg .st21 {
+  fill: #d4713c;
+}
+
+.backgroundfun svg#rnmbg .st22 {
+  fill: #e1d47e;
+}
+
+.backgroundfun svg#rnmbg .st23 {
+  fill: #db9364;
+}
+
+.backgroundfun svg#rnmbg .st24 {
+  fill: #cc8cbc;
+}
+
+.backgroundfun svg#rnmbg .st25 {
+  fill: #e3b6bf;
+}
+
+.backgroundfun svg#rnmbg .st26 {
+  fill: #d1c295;
+}
+
+.backgroundfun svg#rnmbg .st27 {
+  fill: #b3996d;
+}
+
+.backgroundfun svg#rnmbg .st28 {
+  fill: #e8ba47;
+}
+
+.backgroundfun svg#rnmbg .st29 {
+  fill: #b45c36;
+}
+
+svg#swipe {
+  width: 300px;
+  position: absolute;
+  top: 30%;
+  left: -300px;
+  filter: blur(6px);
+  -webkit-animation: swipecut 0.1s linear 1s forwards;
+  animation: swipecut 0.1s linear 1s forwards;
+}
+
+svg#swipe .st0 {
+  fill: #4e8025;
+}
+
+svg#picklerick {
+  width: 300px;
+  position: absolute;
+  bottom: -400px;
+  right: 13%;
+  -webkit-animation: popup 1s 5s forwards;
+  animation: popup 1s 5s forwards;
+}
+
+svg#picklerick .st0 {
+  fill: #fefefe;
+}
+
+svg#picklerick .st1 {
+  fill: #0d130c;
+}
+
+svg#picklerick .st2 {
+  fill: #4e8025;
+}
+
+svg#picklerick .st3 {
+  fill: #669b2e;
+}
+
+svg#picklerick .st4 {
+  fill: #e5f8d3;
+}
+
+@-webkit-keyframes swipecut {
+  0% {
+  }
+
+  100% {
+    transform: translateX(calc(100vw + 300px));
+  }
+}
+
+@-webkit-keyframes loboff1 {
+  0% {
+  }
+
+  100% {
+    transform: translate(0px, 3px) rotate(27deg);
+  }
+}
+
+@-webkit-keyframes loboff2 {
+  0% {
+  }
+
+  100% {
+    transform: translate(10px, -27px) rotate(27deg);
+  }
+}
+
+@-webkit-keyframes loboff3 {
+  0% {
+  }
+
+  100% {
+    transform: translate(20px, -50px) rotate(28deg);
+  }
+}
+
+@-webkit-keyframes popup {
+  0% {
+  }
+
+  100% {
+    transform: translateY(-200px);
+  }
+}
+
+@media only screen and (max-height: 420px) {
+    .svgcontainer svg#fourohfour {
+    height: 180px;
+    }
+    .topconvo{
+        font-size: 25px;
+    }
+    .bottomconvo{
+        font-size: 13px;
+    }
+    svg#picklerick {
+        bottom: -420px;
+        right: 10vw;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .topconvo{
+        font-size: 25px;
+    }
+    .bottomconvo{
+        font-size: 13px;
+    }
+    svg#picklerick {
+        width: 240px;
+    }
+}
+
+ @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700")
+
+@keyframes cross1
+   0%
+      transform:  rotate(45deg) scaleX(0) scaleY(0.7)
+      box-shadow: 0 1vmin 5vmin rgba(0,0,0,0)
+   100%
+      transform:  rotate(45deg) scaleX(1) scaleY(1)
+      box-shadow: 0 1vmin 5vmin rgba(0,0,0,0.5)
+
+@keyframes cross2
+   0%
+      transform:  rotate(-45deg) scaleX(0) scaleY(0.7)
+      box-shadow: 0 1vmin 5vmin rgba(0,0,0,0)
+
+   100%
+      transform:  rotate(-45deg) scaleX(1) scaleY(1)
+      box-shadow: 0 1vmin 5vmin rgba(0,0,0,0.5)
+
+
+@keyframes cross1Reverse
+   100%
+      transform:  rotate(45deg) scaleX(0) scaleY(0.7)
+      box-shadow: 0 1vmin 5vmin rgba(0,0,0,0)
+      opacity: 0
+   0%
+      transform:  rotate(45deg) scaleX(1) scaleY(1)
+      box-shadow: 0 1vmin 5vmin rgba(0,0,0,0.5)
+      opacity: 1
+
+@keyframes cross2Reverse
+   100%
+      transform:  rotate(-45deg) scaleX(0) scaleY(0.7)
+      box-shadow: 0 1vmin 5vmin rgba(0,0,0,0)
+      opacity: 0
+   0%
+      transform:  rotate(-45deg) scaleX(1) scaleY(1)
+      box-shadow: 0 1vmin 5vmin rgba(0,0,0,0.5)
+      opacity: 1
+
+@keyframes flip
+   0%
+      transform: rotate(-90deg) rotateY(0deg) translateX(0)
+   60%
+      transform: rotate(-90deg) rotateY(200deg) translateX(3vmin)
+   80%
+      transform: rotate(-90deg) rotateY(170deg) translateX(3vmin)
+   100%
+      transform: rotate(-90deg) rotateY(180deg) translateX(3vmin)
+
+@keyframes flipReverse
+   100%
+      transform: rotate(-90deg) rotateY(0deg) translateX(0)
+   0%
+      transform: rotate(-90deg) rotateY(180deg) translateX(3vmin)
+
+body, html
+   width: 100vw
+   height: 100vh
+   background-color: #9D1255
+   overflow: hidden
+   background-image: linear-gradient(45deg, #e91e63, #420046)
+
+   font-family: "Open Sans"
+   font-weight: 700
+   display: flex
+   justify-content: center
+   align-items: center
+   flex-direction: column
+
+.internal
+   font-size: 50vmin
+   text-align: center
+   color: #fff
+   text-shadow: 0 1vmin 5vmin rgba(0,0,0,0.5)
+   position: relative
+   margin-bottom: 10vmin
+   transition: transform 300ms
+   &:hover
+      transform: scale(1.2)
+      cursor: pointer
+      &:before
+         animation: flipReverse 300ms
+      .zero
+         &:before
+            animation: cross1Reverse 300ms
+         &:after
+            animation: cross2Reverse 300ms
+   &:before
+      content: "("
+      position: absolute
+      transform: rotate(-90deg)
+      right: 25vmin
+      bottom: -30vmin
+      display: block
+      font-size: 115%
+      animation: flip 1000ms 1.6s ease-in-out forwards
+      transition: transform 300ms
+
+
+.zero
+   position: relative
+   &:before, &:after
+      position: absolute
+      display: block
+      content: ''
+      width: 140%
+      height: 10vmin
+      background: #3fe9ea
+      background-image: linear-gradient(90deg, #3fe9ea, #4ea6d0)
+      left: -20%
+      top: 45%
+      box-shadow: 0 1vmin 5vmin rgba(0,0,0,0.5)
+
+   &:before
+      transform: rotate(45deg) scaleX(0) scaleY(0.7)
+      animation: cross1 300ms 1s ease-in-out forwards
+
+   &:after
+      transform: rotate(-45deg) scaleX(0) scaleY(0.7)
+      animation: cross2 400ms 1.2s ease-in-out forwards
+
+   &:nth-child(2)
+      &:before
+         transform: rotate(45deg) scaleX(0) scaleY(0.7)
+         animation: cross1 400ms 1.1s ease-in-out forwards
+
+      &:after
+         transform: rotate(-45deg) scaleX(0) scaleY(0.7)
+         animation: cross2 500ms 1.3s ease-in-out forwards
+
+.info
+   text-transform: uppercase
+   color: #3fe9ea
+   text-shadow: 0 0.5vmin 1vmin rgba(0,0,0,0.5)
+   font-size: 200%
+   padding: 0 24px
+   text-align: center
+.link
+   position: absolute
+   bottom: 0
+   padding-bottom: 24px
+   a
+      color: #fff
+      opacity: 0.5
+      text-decoration: none
+      font-weight: 400
+      font-size: 90%
+      transition: opacity 300ms
+      &:hover
+         opacity: 0.9
+
+    </style>
+
+
+    <!-- Custom styles for this template -->
+    <link href="/static/css/sticky-footer-navbar.css" rel="stylesheet">
+</head>
+<body class="d-flex flex-column h-100">
+
+<header>
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"><img src="/static/img/logo.png" height="35" width="35">&nbsp;
+                &nbsp;PyBin</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+                    aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/">Add Paste</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../view">View Pastes</a>
+                    </li>
+                </ul>
+                <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<!-- Begin page content -->
+        p.info Oh No! Cody is sad! Internally sad!
+h1.internal
+   span.five 5
+   span.zero 0
+   span.zero 0
+footer.link
+   a(href="/") go back
+
+
+        </div>
+
+    </div>
+    </div>
+    <!----div class="base-block"---->
+
+
+    <!--Recent Post go here -->
+
+    </div>
+    <!--/base-block-->
+
+    </div>
+
+</main>
+
+<footer class="footer mt-auto py-3 bg-light">
+    <div class="container">
+        <cetnter>
+            <span class="text-muted"><center>Powered by Python</center></span>
+        </cetnter>
+    </div>
+</footer>
+
+
+<script src="/static/js/bootstrap.bundle.min.js"></script>
+
+
+</body>
+</html>
