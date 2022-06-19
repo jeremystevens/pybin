@@ -50,7 +50,7 @@ from flask import Flask, render_template, request, redirect, url_for, flash, ses
 from flask import Flask, render_template, request, url_for, redirect, flash, session, send_file, Response, abort
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import Boolean, DateTime, Column, Integer, String, ForeignKey, Table
+from sqlalchemy import Boolean, DateTime, Column, Integer, String, ForeignKey, Table, create_engine
 from sqlalchemy.sql.expression import update
 from sqlalchemy import and_, or_, not_
 from sqlalchemy.sql import func
@@ -70,6 +70,7 @@ from views import (main_views,
                    post_views,
                    view_all_views,
                    user_login_views, user_registration_views,
+                   user_logout_views,
     # user_register_views,
                    )
 
@@ -95,6 +96,9 @@ db = SQLAlchemy(app)
 # rows to show for Pagination
 ROWS_PER_PAGE = 6
 
+from sqlalchemy.pool import SingletonThreadPool
+engine = create_engine('sqlite:///pybin.db',
+                poolclass=SingletonThreadPool)
 
 def create_app():
     app = Flask(__name__)
@@ -147,8 +151,13 @@ app.register_blueprint(posting_views.bp)
 app.register_blueprint(post_views.bp)
 # view all post in archive blueprints
 app.register_blueprint(view_all_views.bp)
+# user login blueprints
 app.register_blueprint(user_login_views.bp)
+# user registration blueprints
 app.register_blueprint(user_registration_views.bp)
+# user logout blueprints
+app.register_blueprint(user_logout_views.bp)
+
 
 ''' ERROR HANDLERS '''
 
@@ -161,7 +170,7 @@ def internal_server_error(e):
     return render_template("500.html"), 500
 
 
-# Error Handlers
+#  Register Error Handlers
 app.register_error_handler(404, page_not_found)
 app.register_error_handler(500, internal_server_error)
 
