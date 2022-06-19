@@ -37,8 +37,10 @@ def index():
     # if session is set  get session id
     if 'user_name' in session:
         user_name = session['user_name']
+    else:
+        user_name = "Anonymous"
         # display username on page with link to profile
         return render_template('index.html', username=user_name)
-    else:
-        # display login button
-        return render_template('index.html')
+
+    # display login button
+    return render_template('index.html')
