@@ -23,7 +23,7 @@ __version__ = '2.0.0'  # current version
 __author__ = 'Jeremy Stevens'  # author
 
 # ============================================================
-""" Posting.py - submitting post. views """
+""" Posting_views.py - submitting post to the database """
 # ============================================================
 
 from flask import Blueprint, url_for, redirect, current_app, session, render_template, request
