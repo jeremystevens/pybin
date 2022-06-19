@@ -71,7 +71,7 @@ from views import (main_views,
                    view_all_views,
                    user_login_views, user_registration_views,
                    user_logout_views,
-    # user_register_views,
+                   download_file_views
                    )
 
 ''''
@@ -99,6 +99,7 @@ ROWS_PER_PAGE = 6
 from sqlalchemy.pool import SingletonThreadPool
 engine = create_engine('sqlite:///pybin.db',
                 poolclass=SingletonThreadPool)
+
 
 def create_app():
     app = Flask(__name__)
@@ -157,7 +158,8 @@ app.register_blueprint(user_login_views.bp)
 app.register_blueprint(user_registration_views.bp)
 # user logout blueprints
 app.register_blueprint(user_logout_views.bp)
-
+# download post as txt file blueprints
+app.register_blueprint(download_file_views.bp)
 
 ''' ERROR HANDLERS '''
 

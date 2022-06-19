@@ -35,7 +35,8 @@ from models.posts import Post
 from models.users import Users
 from models.profile import Profile
 from views.prune_post_views import prune_expired
-
+# load hit updater
+from utils.update_hits import update_hits
 
 bp = Blueprint("posts", __name__, url_prefix="/")
 
@@ -87,7 +88,7 @@ def get_post(random_id):
     post_size = convert_size(int(post_size))
     post_hits = post.query.filter_by(post_id=random_id).first().post_hits
     # this updates the view count.
-    #update_hits(random_id)
+    update_hits(random_id)
     post_expire = post.query.filter_by(post_id=random_id).first().expiration
     if post_expire == "Never":
         exp_date = "Never"
