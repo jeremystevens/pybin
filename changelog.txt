@@ -1,0 +1,39 @@
+Changelog for V2.0.0 -->
+
+Changes in  Development  Version 2.0.0 (06/18/2022):
+ 1. Added Login Controller. and Login View.
+ 2. Added Register Controller. and Register View
+ 3.
+
+
+Changes: in  Development  Version 2.0.0 (06/17/2022):
+  Updated Code listed below to reflect the changes
+  1. Initated the MVC architecture for the application
+  2. Updated the code to use the MVC architecture
+  3. Created Controller and Model classes for the application
+       Finished in 9f3c3dd83ef2287f7eb7b14c14cf036a6b7d3c8e
+         1. Index Page for the application
+         2. Submit post page for the application
+         3. View post by ID page for the application
+  4. Created Utils folder for the application moved all the utility functions to the Utils folder (originally called the db folder)
+  5. Created  setup.py file for the application to install the application
+  6. Created make_tables.py file for the application to create the tables in the database (used by setup.py)
+  7. Added requirements.txt file to the application
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
