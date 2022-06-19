@@ -23,7 +23,7 @@ __version__ = '2.0.0'  # current version
 __author__ = 'Jeremy Stevens'  # author
 
 # ============================================================
-""" Post.py -  view post by ID """
+""" post_views.py -  view post by ID """
 # ============================================================
 
 from flask import Blueprint, url_for, redirect, current_app, session, render_template, request
@@ -72,7 +72,7 @@ def get_post(random_id):
     if poster != "Anonymous":
         profile = Profile()
         total_views = profile.query.filter_by(username=poster).first().total_views
-        if total_views == "":
+        if total_views == None:
             total_views = 0
         total_views = int(total_views) + 1
         profile.query.filter_by(username=poster).update(dict(total_views=total_views))
