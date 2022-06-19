@@ -23,8 +23,9 @@ __version__ = '2.0.0'  # current version
 __author__ = 'Jeremy Stevens'  # author
 
 # ============================================================
-""" Prune_post_views.py -  prune expired posts """
+""" prune_post_views.py -  prune expired posts """
 # ============================================================
+
 from flask import Blueprint, url_for, redirect, current_app, session, render_template, request
 from utils.prepare import convert_size, generate_random_id, exp_datetime, utf8len
 import datetime

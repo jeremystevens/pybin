@@ -23,7 +23,7 @@ __version__ = '2.0.0'  # current version
 __author__ = 'Jeremy Stevens'  # author
 
 # ============================================================
-""" Post.py -  view all post in archive """
+""" view_all_views.py -  view all post in archive """
 # ============================================================
 
 from flask import Blueprint, url_for, redirect, current_app, session, render_template, request
