@@ -45,12 +45,12 @@
                     {% if page_num %}
                     <!-- Check for the active page and set the link to "Active"-->
                     {% if posts.page == page_num %}
-                    <a href="{{ url_for('view_all', page=page_num) }}"
+                    <a href="{{ url_for('view_all_views.view_all', page=page_num) }}"
                        class="btn btn-dark">
                         {{ page_num }}
                     </a>
                     {% else %}
-                    <a href="{{ url_for('view_all', page=page_num) }}"
+                    <a href="{{ url_for('view_all_views.view_all', page=page_num) }}"
                        class="btn btn-outline-dark">
                         {{ page_num }}
                     </a>
