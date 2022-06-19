@@ -71,5 +71,4 @@ def user_login():
     # update the last login column
     db.session.query(Profile).filter(Profile.username == username).update({"last_login": datetime.now()})
     db.session.commit()
-    db.session.close_all()
     return redirect(url_for('main.index'))
