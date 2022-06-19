@@ -3,7 +3,7 @@ Changelog for V2.0.0 -->
 Changes in  Development  Version 2.0.0 (06/18/2022):
  1. Added Login Controller. and Login View.
  2. Added Register Controller. and Register View
- 3.
+ 3. Fixed issue #1
 
 
 Changes: in  Development  Version 2.0.0 (06/17/2022):
@@ -19,21 +19,3 @@ Changes: in  Development  Version 2.0.0 (06/17/2022):
   5. Created  setup.py file for the application to install the application
   6. Created make_tables.py file for the application to create the tables in the database (used by setup.py)
   7. Added requirements.txt file to the application
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
