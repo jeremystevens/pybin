@@ -48,7 +48,8 @@ SESSION_TYPE = 'filesystem'
  Site Administrators 
 """
 
-admin_email = 'admin@youremail.com'
+admin_email = 'jeremaihstevens@gmail.com'
+rapid_apikey = 'c3be1c06c1msh4372be4e855de86p1e0430jsn8efd69e42245'
 
 # you can add administrator accounts here.
 admins = {'Admin1': {'password': '123'}, 'Admin2': {'password': '123'}}

@@ -79,6 +79,8 @@ from views import (main_views,
                    search_name_views,
                    admin_login_views,
                    admin_panel_views,
+                   report_post_views,
+                   api_views,
                    )
 
 ''''
@@ -178,7 +180,11 @@ app.register_blueprint(search_name_views.bp)
 app.register_blueprint(admin_login_views.bp)
 # admin panel blueprints
 app.register_blueprint(admin_panel_views.bp)
-# app.register_blueprint(admin_panel_views.bp)
+# report post blueprints
+app.register_blueprint(report_post_views.bp)
+#  API blueprint
+app.register_blueprint(api_views.bp)
+
 
 ''' ERROR HANDLERS '''
 
