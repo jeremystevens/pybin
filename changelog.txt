@@ -1,6 +1,17 @@
 Changelog for V2.0.0 -->
 
-Changes in  Development  Version 2.0.0 (06/18/2022):
+
+Changes: in Development Version 2.0.0 (06/19/2022)
+
+1. Added search by syntax
+2. Added raw post view & controller
+3. Update view count & Download as file
+4. fixed url_for showing pagination
+5. Updated file title header
+6. removed tags
+7. fixed #1 - Sessions
+
+Changes: in  Development  Version 2.0.0 (06/18/2022):
  1. Added Login Controller. and Login View.
  2. Added Register Controller. and Register View
  3. Fixed issue #1
