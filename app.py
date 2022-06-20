@@ -71,7 +71,8 @@ from views import (main_views,
                    view_all_views,
                    user_login_views, user_registration_views,
                    user_logout_views,
-                   download_file_views
+                   download_file_views,
+                   raw_post_views
                    )
 
 ''''
@@ -160,6 +161,9 @@ app.register_blueprint(user_registration_views.bp)
 app.register_blueprint(user_logout_views.bp)
 # download post as txt file blueprints
 app.register_blueprint(download_file_views.bp)
+# view raw post
+app.register_blueprint(raw_post_views.bp)
+
 
 ''' ERROR HANDLERS '''
 
