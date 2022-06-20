@@ -65,6 +65,7 @@ from models.main import db
 from models.posts import Post
 from models.users import Users
 from models.profile import Profile
+''' import all the views '''
 from views import (main_views,
                    posting_views,
                    post_views,
@@ -166,7 +167,7 @@ app.register_blueprint(download_file_views.bp)
 app.register_blueprint(raw_post_views.bp)
 # get posts by Syntax
 app.register_blueprint(search_syntax_views.bp)
-#app.register_blueprint(search_syntax_views.bp)
+
 
 ''' ERROR HANDLERS '''
 
