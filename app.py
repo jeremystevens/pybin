@@ -72,7 +72,8 @@ from views import (main_views,
                    user_login_views, user_registration_views,
                    user_logout_views,
                    download_file_views,
-                   raw_post_views
+                   raw_post_views,
+                   search_syntax_views
                    )
 
 ''''
@@ -163,7 +164,9 @@ app.register_blueprint(user_logout_views.bp)
 app.register_blueprint(download_file_views.bp)
 # view raw post
 app.register_blueprint(raw_post_views.bp)
-
+# get posts by Syntax
+app.register_blueprint(search_syntax_views.bp)
+#app.register_blueprint(search_syntax_views.bp)
 
 ''' ERROR HANDLERS '''
 
