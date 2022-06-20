@@ -65,6 +65,7 @@ from models.main import db
 from models.posts import Post
 from models.users import Users
 from models.profile import Profile
+
 ''' import all the views '''
 from views import (main_views,
                    posting_views,
@@ -75,7 +76,9 @@ from views import (main_views,
                    download_file_views,
                    raw_post_views,
                    search_syntax_views,
-                   search_name_views
+                   search_name_views,
+                   admin_login_views,
+                   admin_panel_views,
                    )
 
 ''''
@@ -101,8 +104,9 @@ db = SQLAlchemy(app)
 ROWS_PER_PAGE = 6
 
 from sqlalchemy.pool import SingletonThreadPool
+
 engine = create_engine('sqlite:///pybin.db',
-                poolclass=SingletonThreadPool)
+                       poolclass=SingletonThreadPool)
 
 
 def create_app():
@@ -170,6 +174,11 @@ app.register_blueprint(raw_post_views.bp)
 app.register_blueprint(search_syntax_views.bp)
 # search post by name
 app.register_blueprint(search_name_views.bp)
+''' site admin blueprints '''
+app.register_blueprint(admin_login_views.bp)
+# admin panel blueprints
+app.register_blueprint(admin_panel_views.bp)
+# app.register_blueprint(admin_panel_views.bp)
 
 ''' ERROR HANDLERS '''
 
@@ -185,6 +194,8 @@ def internal_server_error(e):
 #  Register Error Handlers
 app.register_error_handler(404, page_not_found)
 app.register_error_handler(500, internal_server_error)
+
+
 
 ''' Run Main App '''
 if __name__ == "__main__":

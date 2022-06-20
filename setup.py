@@ -25,7 +25,9 @@ __author__ = 'Jeremy Stevens'  # author
 # ============================================================
 """ setup.py - setup the application """
 # ============================================================
-
+from models.users import Users
+from models.profile import Profile
+from models.main import db
 
 import os
 # install modules from requirements.txt
