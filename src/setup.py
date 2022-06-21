@@ -34,7 +34,7 @@ import os
 print("installing modules")
 os.system("pip install -r requirements.txt")
 # make tables in database
-from make_tables import db
+from make import db
 print("Creating DB tables")
 try:
     db.create_all()

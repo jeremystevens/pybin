@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="03e65622-60af-411c-b9ea-d70d8357af7f" name="Changes" comment="update">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/make_tables.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/README" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/alembic.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/env.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/script.py.mako" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/main.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/posts.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/profile.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/users.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pybin.db" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/setup.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/css/bootstrap.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/css/prism.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/css/sticky-footer-navbar.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/css/style.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/Icon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/code.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/notepad.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/profile.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/bootstrap.bundle.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/prism.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/404.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/500.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/adminlogin.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/adminpanel.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/footer.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/login.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/navbar.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/posts.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/profile.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/raw.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/register.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/search.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/view.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/cronjob.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/crypto.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/db.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/prepare.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/update_hits.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/admin_login_views.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/admin_panel_views.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/api_views.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/download_file_views.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/main_views.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/post_views.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/posting_views.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/profile_views.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/prune_post_views.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/raw_post_views.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/report_post_views.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/search_name_views.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/search_syntax_views.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/user_login_views.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/user_logout_views.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/user_registration_views.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/view_all_views.py" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Flask Main" />
+        <option value="HTML File" />
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2Aiy4am5G2Qz5qfkqyiIWJYj4QS" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\nites\PycharmProjects\pybinmvc\utils" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="pybinmvc" type="Python.FlaskServer">
+      <module name="pybinmvc" />
+      <option name="target" value="$PROJECT_DIR$/app.py" />
+      <option name="targetType" value="PATH" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="03e65622-60af-411c-b9ea-d70d8357af7f" name="Changes" comment="" />
+      <created>1655506510055</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1655506510055</updated>
+      <workItem from="1655506529298" duration="55499000" />
+    </task>
+    <task id="LOCAL-00001" summary="user login / registration">
+      <created>1655584726571</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1655584726571</updated>
+    </task>
+    <task id="LOCAL-00002" summary="added changelog.txt">
+      <created>1655597407501</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1655597407501</updated>
+    </task>
+    <task id="LOCAL-00003" summary="updated changelog.txt">
+      <created>1655597495541</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1655597495541</updated>
+    </task>
+    <task id="LOCAL-00004" summary="fixed #2">
+      <created>1655598558699</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1655598558699</updated>
+    </task>
+    <task id="LOCAL-00005" summary="fixed #3 removed line 74">
+      <created>1655598901869</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1655598901869</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Added user logout BP &amp; Controller">
+      <created>1655599322540</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1655599322541</updated>
+    </task>
+    <task id="LOCAL-00007" summary="fixed #1 - Sessions">
+      <created>1655652565035</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1655652565035</updated>
+    </task>
+    <task id="LOCAL-00008" summary="removed tags">
+      <created>1655652698325</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1655652698325</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Updated file title">
+      <created>1655652803992</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1655652803992</updated>
+    </task>
+    <task id="LOCAL-00010" summary="fixed url_for">
+      <created>1655652952783</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1655652952783</updated>
+    </task>
+    <task id="LOCAL-00011" summary="fixed file title header">
+      <created>1655653015057</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1655653015057</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Update view count &amp; Download as file">
+      <created>1655654534319</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1655654534319</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Added raw post view &amp; controller">
+      <created>1655686258576</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1655686258576</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Added search by syntax">
+      <created>1655687340040</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1655687340040</updated>
+    </task>
+    <task id="LOCAL-00015" summary="updated">
+      <created>1655688139180</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1655688139180</updated>
+    </task>
+    <task id="LOCAL-00016" summary="updated changelog.txt">
+      <created>1655691862115</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1655691862115</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Added Search by Post Name">
+      <created>1655749353843</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1655749353843</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Added Admin Login / Panel">
+      <created>1655760546510</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1655760546510</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Added Api &amp; Report Post to Admin">
+      <created>1655763444176</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1655763444176</updated>
+    </task>
+    <task id="LOCAL-00020" summary="fixed #4">
+      <created>1655769965115</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1655769965115</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Added User profile view &amp; controller">
+      <created>1655770068943</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1655770068944</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Updated changelog.txt">
+      <created>1655770293197</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1655770293197</updated>
+    </task>
+    <task id="LOCAL-00023" summary="added __init__.py">
+      <created>1655770973760</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1655770973760</updated>
+    </task>
+    <task id="LOCAL-00024" summary="update">
+      <created>1655772487146</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1655772487146</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="user login / registration" />
+    <MESSAGE value="added changelog.txt" />
+    <MESSAGE value="fixed #2" />
+    <MESSAGE value="fixed #3 removed line 74" />
+    <MESSAGE value="Added user logout BP &amp; Controller" />
+    <MESSAGE value="fixed #1 - Sessions" />
+    <MESSAGE value="removed tags" />
+    <MESSAGE value="Updated file title" />
+    <MESSAGE value="fixed url_for" />
+    <MESSAGE value="fixed file title header" />
+    <MESSAGE value="Update view count &amp; Download as file" />
+    <MESSAGE value="Added raw post view &amp; controller" />
+    <MESSAGE value="Added search by syntax" />
+    <MESSAGE value="updated" />
+    <MESSAGE value="updated changelog.txt" />
+    <MESSAGE value="Added Search by Post Name" />
+    <MESSAGE value="Added Admin Login / Panel" />
+    <MESSAGE value="Added Api &amp; Report Post to Admin" />
+    <MESSAGE value="fixed #4" />
+    <MESSAGE value="Added User profile view &amp; controller" />
+    <MESSAGE value="Updated changelog.txt" />
+    <MESSAGE value="added __init__.py" />
+    <MESSAGE value="update" />
+    <option name="LAST_COMMIT_MESSAGE" value="update" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/utils/update_hits.py</url>
+          <line>28</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/views/admin_login_views.py</url>
+          <line>25</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/views/api_views.py</url>
+          <line>28</line>
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/pybinmvc$pybinmvc.coverage" NAME="pybinmvc Coverage Results" MODIFIED="1655523048807" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+  </component>
+</project>
