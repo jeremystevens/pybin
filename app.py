@@ -81,6 +81,7 @@ from views import (main_views,
                    admin_panel_views,
                    report_post_views,
                    api_views,
+                   profile_views
                    )
 
 ''''
@@ -184,7 +185,8 @@ app.register_blueprint(admin_panel_views.bp)
 app.register_blueprint(report_post_views.bp)
 #  API blueprint
 app.register_blueprint(api_views.bp)
-
+# users profile page
+app.register_blueprint(profile_views.bp)
 
 ''' ERROR HANDLERS '''
 
