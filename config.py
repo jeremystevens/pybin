@@ -48,9 +48,18 @@ SESSION_TYPE = 'filesystem'
  Site Administrators 
 """
 
-admin_email = 'jeremaihstevens@gmail.com'
-rapid_apikey = 'c3be1c06c1msh4372be4e855de86p1e0430jsn8efd69e42245'
 
-# you can add administrator accounts here.
+# admins email address
+admin_email = 'admin@youremail.com'
+
+''' get a rapid api key for  sendgrid.com  add it below '''
+rapid_apikey = 'fiosjef939t03gkr0gk4yh59940wowsfg00340435543'
+
+''' Site Administrator Accounts 
+ 
+    Add the site administrator accounts here.
+    The format is:
+    { Username : Password }
+'''
 admins = {'Admin1': {'password': '123'}, 'Admin2': {'password': '123'}}
 
