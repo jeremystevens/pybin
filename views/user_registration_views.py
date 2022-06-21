@@ -72,7 +72,7 @@ def register():
     # create user profile in db
     db.session.add(Profile(username=username))
     db.session.commit()
-    db.session.close_all()
+    #db.session.close_all()
     # flash message
     flash('Successfully registered, you can now login')
     return render_template('register.html')
