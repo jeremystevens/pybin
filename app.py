@@ -65,7 +65,6 @@ from models.main import db
 from models.posts import Post
 from models.users import Users
 from models.profile import Profile
-
 ''' import all the views '''
 from views import (main_views,
                    posting_views,
@@ -207,5 +206,5 @@ app.register_error_handler(500, internal_server_error)
 
 ''' Run Main App '''
 if __name__ == "__main__":
-    app.run(debug=True)
-    # app.run(host="0.0.0.0", port=8080)
+    #app.run(debug=True)
+    app.run(host="0.0.0.0", port=8080)
